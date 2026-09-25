@@ -1,0 +1,16 @@
+---
+title: "M__ID__. Шпаргалка"
+subtitle: "__TITLE__"
+filters:
+  - ../../../quarto/filters/cheatsheet-tables.lua
+format:
+  html: default
+  pdf:
+    toc: false
+    number-sections: false
+    fontsize: 9pt
+    classoption: [twocolumn]
+    geometry: [top=14mm, bottom=16mm, left=12mm, right=12mm]
+---
+
+# …

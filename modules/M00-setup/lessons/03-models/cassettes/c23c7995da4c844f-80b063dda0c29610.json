@@ -1,0 +1,33 @@
+{
+ "recorded_at": "2026-09-25T18:38:05+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Меня зовут Алиса. Просто поздоровайся со мной."
+    },
+    {
+     "role": "assistant",
+     "content": "Привет, Алиса! Рада познакомиться. Как ты поживешь?"
+    },
+    {
+     "role": "user",
+     "content": "Как меня зовут?"
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Тебя зовут Алиса.\"}}],\"created\":1790361485,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":9,\"prompt_tokens\":67,\"total_tokens\":76,\"prompt_tokens_details\":{\"cached_tokens\":47}},\"id\":\"chatcmpl-Qaaj11yGkaMsShInRtdrI9vDx83Dq8FZ\",\"timings\":{\"cache_n\":47,\"prompt_n\":20,\"prompt_ms\":533.454,\"prompt_per_token_ms\":26.6727,\"prompt_per_second\":37.491517544155634,\"predicted_n\":9,\"predicted_ms\":546.074,\"predicted_per_token_ms\":68.25925,\"predicted_per_second\":14.65002911693287}}"
+ }
+}

@@ -1,0 +1,13 @@
+line-length = 120
+target-version = "py312"
+extend-exclude = ["**/.venv", "templates"]
+
+[lint]
+select = ["E", "F", "W", "I", "UP", "B", "BLE"]
+ignore = ["E731"]
+
+[lint.per-file-ignores]
+"**/*.ipynb" = ["E402", "E501", "B018"]
+
+[lint.isort]
+known-first-party = ["mlcourse"]

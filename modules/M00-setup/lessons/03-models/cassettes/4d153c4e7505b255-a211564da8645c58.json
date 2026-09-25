@@ -1,0 +1,25 @@
+{
+ "recorded_at": "2026-09-25T18:38:02+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Как меня зовут?"
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Меня не зовут, так как я — искусственный интеллект. У меня нет собственного имени в человеческом понимании, но вы можете обращаться ко мне как к вашему виртуальному помощнику или ассистенту.\\n\\nА как вас зовут? Я буду рад, если вы поделитесь вашим именем, чтобы наша беседа стала более дружелюбной! 😊\"}}],\"created\":1790361482,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":86,\"prompt_tokens\":18,\"total_tokens\":104,\"prompt_tokens_details\":{\"cached_tokens\":0}},\"id\":\"chatcmpl-5ieaIQZp6MzyQwq7h2DaLFkTWprpqrwo\",\"timings\":{\"cache_n\":0,\"prompt_n\":18,\"prompt_ms\":275.829,\"prompt_per_token_ms\":15.323833333333333,\"prompt_per_second\":65.25782278150594,\"predicted_n\":86,\"predicted_ms\":2984.502,\"predicted_per_token_ms\":35.111788235294114,\"predicted_per_second\":28.480463407295424}}"
+ }
+}

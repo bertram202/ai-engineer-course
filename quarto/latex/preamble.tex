@@ -1,0 +1,26 @@
+% Общий стиль PDF курса «AI-инженер» (подключается ко всем PDF через _quarto.yml)
+
+\usepackage{xcolor}
+\definecolor{mlaccent}{HTML}{3949AB}
+\definecolor{mlmuted}{HTML}{6B7280}
+
+% Заголовки — в фирменном цвете
+\addtokomafont{disposition}{\color{mlaccent}}
+\setkomafont{subtitle}{\normalfont\sffamily\large\color{mlmuted}}
+\setkomafont{subject}{\normalfont\sffamily\small\color{mlmuted}}
+
+% Строка над названием документа
+\subject{AI-инженер: от устройства LLM до мультиагентных систем}
+
+% Колонтитулы
+\usepackage[automark]{scrlayer-scrpage}
+\clearpairofpagestyles
+\ihead{\small\sffamily\color{mlmuted}AI-инженер}
+\ohead{\small\sffamily\color{mlmuted}\headmark}
+\cfoot*{\small\sffamily\color{mlmuted}\pagemark}
+\pagestyle{scrheadings}
+
+% Типографика: меньше «дыр» в строках, аккуратные таблицы
+\setlength{\emergencystretch}{3em}
+\frenchspacing
+\renewcommand{\arraystretch}{1.25}

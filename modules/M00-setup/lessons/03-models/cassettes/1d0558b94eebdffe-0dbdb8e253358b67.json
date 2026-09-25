@@ -1,0 +1,22 @@
+{
+ "recorded_at": "2026-09-25T18:38:30+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "У Маши было 12 яблок. Она отдала треть Пете, а потом купила ещё 5. Сколько яблок у Маши? В ответе — только число."
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "max_tokens": 3000
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"13\",\"reasoning_content\":\"We need answer in Russian? User asks simple math, answer only number. Need compute: Masha had 12 apples. Gave away a third to Petya: 12/3=4, remaining 8. Then bought 5, total 13. Final only number. Ensure no extra.\\n\"}}],\"created\":1790361510,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":72,\"prompt_tokens\":92,\"total_tokens\":164,\"prompt_tokens_details\":{\"cached_tokens\":0}},\"id\":\"chatcmpl-a4nv2MBYCTlLcUDEFPAHIzohdmIPDgY5\",\"timings\":{\"cache_n\":0,\"prompt_n\":92,\"prompt_ms\":533.176,\"prompt_per_token_ms\":5.7953913043478265,\"prompt_per_second\":172.55090251624227,\"predicted_n\":72,\"predicted_ms\":4893.118,\"predicted_per_token_ms\":68.91715492957746,\"predicted_per_second\":14.510175311529375}}"
+ }
+}

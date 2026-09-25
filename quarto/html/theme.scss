@@ -1,0 +1,24 @@
+/*-- scss:defaults --*/
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap");
+
+$primary: #3949ab;
+$font-family-sans-serif: "PT Sans", system-ui, sans-serif;
+$font-family-monospace: "JetBrains Mono", ui-monospace, monospace;
+$headings-font-family: "PT Sans", system-ui, sans-serif;
+$font-size-root: 17px;
+$line-height-base: 1.6;
+
+/*-- scss:rules --*/
+.content p,
+.content li {
+  font-family: "PT Serif", Georgia, serif;
+}
+
+h1, h2, h3 {
+  color: $primary;
+  font-weight: 700;
+}
+
+.callout {
+  font-family: "PT Sans", system-ui, sans-serif;
+}

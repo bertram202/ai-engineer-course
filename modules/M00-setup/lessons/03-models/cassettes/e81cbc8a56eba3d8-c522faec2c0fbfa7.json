@@ -1,0 +1,26 @@
+{
+ "recorded_at": "2026-09-25T18:37:51+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "model": "qwen3.8-27b",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Объясни одним предложением, что такое токен в LLM."
+    }
+   ],
+   "max_tokens": 120,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Токен в LLM — это базовая единица текста, которую модель обрабатывает (например, отдельное слово, часть слова или символ), соответствующая одному числу в её внутреннем векторном представлении.\"}}],\"created\":1790361471,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":49,\"prompt_tokens\":28,\"total_tokens\":77,\"prompt_tokens_details\":{\"cached_tokens\":0}},\"id\":\"chatcmpl-4vqfjImID64FoFBpjzRiSmDKkAChK7qu\",\"timings\":{\"cache_n\":0,\"prompt_n\":28,\"prompt_ms\":288.349,\"prompt_per_token_ms\":10.29817857142857,\"prompt_per_second\":97.1045503885916,\"predicted_n\":49,\"predicted_ms\":1669.272,\"predicted_per_token_ms\":34.7765,\"predicted_per_second\":28.755050105674812}}"
+ }
+}

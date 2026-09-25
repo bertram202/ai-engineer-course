@@ -1,0 +1,46 @@
+{
+ "recorded_at": "2026-09-25T18:38:32+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Нужен ли сегодня зонт в Казани?"
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "get_weather",
+      "description": "Текущая погода в городе",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "city": {
+         "type": "string",
+         "description": "Название города"
+        }
+       },
+       "required": [
+        "city"
+       ]
+      }
+     }
+    }
+   ],
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"get_weather\",\"arguments\":\"{\\\"city\\\":\\\"Казань\\\"}\"},\"id\":\"gsnkSDQrOhRny1kD3SZuMRlaBWlO0Est\"}]}}],\"created\":1790361512,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":29,\"prompt_tokens\":290,\"total_tokens\":319,\"prompt_tokens_details\":{\"cached_tokens\":0}},\"id\":\"chatcmpl-q3PKIhwTC4wtH7m6WQTeIODmakSjeYeZ\",\"timings\":{\"cache_n\":0,\"prompt_n\":290,\"prompt_ms\":863.585,\"prompt_per_token_ms\":2.977879310344828,\"prompt_per_second\":335.8094455091276,\"predicted_n\":29,\"predicted_ms\":997.018,\"predicted_per_token_ms\":35.60778571428572,\"predicted_per_second\":28.083745729766157}}"
+ }
+}

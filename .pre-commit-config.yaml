@@ -1,0 +1,19 @@
+# Хуки перед коммитом: make setup устанавливает их через `uvx pre-commit install`.
+repos:
+  - repo: local
+    hooks:
+      - id: check-secrets
+        name: Нет секретов (ключи, адреса серверов, личные пути)
+        entry: python3 scripts/check_secrets.py
+        language: system
+        exclude: ^\.env$
+      - id: ruff
+        name: ruff
+        entry: uvx ruff check --fix
+        language: system
+        types: [python]
+      - id: exercises-solutions-pairs
+        name: У каждого упражнения есть решение
+        entry: bash -c 'for f in modules/*/exercises/ex*.py; do s="${f/exercises/solutions}"; [ -f "$s" ] || { echo "нет решения для $f"; exit 1; }; done'
+        language: system
+        pass_filenames: false

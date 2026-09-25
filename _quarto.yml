@@ -1,0 +1,74 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - modules/*/theory/theory.qmd
+    - modules/*/theory/cheatsheet.qmd
+    - modules/*/lessons/*/lesson.ipynb
+
+lang: ru
+
+execute:
+  freeze: auto
+
+website:
+  title: "AI-инженер"
+  description: "Курс «AI-инженер: от устройства LLM до мультиагентных систем»"
+  site-url: https://bertram202.github.io/ai-engineer-course
+  repo-url: https://github.com/bertram202/ai-engineer-course
+  repo-actions: [issue]
+  search:
+    location: sidebar
+  navbar:
+    left:
+      - text: "О курсе"
+        href: index.qmd
+    right:
+      - icon: github
+        href: https://github.com/bertram202/ai-engineer-course
+  sidebar:
+    style: docked
+    contents:
+      - section: "M00 · Старт"
+        contents:
+          - modules/M00-setup/theory/theory.qmd
+          - modules/M00-setup/theory/cheatsheet.qmd
+          - modules/M00-setup/lessons/01-environment/lesson.ipynb
+          - modules/M00-setup/lessons/02-docker/lesson.ipynb
+          - modules/M00-setup/lessons/03-models/lesson.ipynb
+          - modules/M00-setup/lessons/04-opencode/lesson.ipynb
+  page-footer:
+    left: "AI-инженер: от устройства LLM до мультиагентных систем"
+    right: "Тексты — CC BY-NC-SA 4.0 · Код — MIT"
+
+format:
+  html:
+    theme:
+      light: [cosmo, quarto/html/theme.scss]
+      dark: [darkly, quarto/html/theme.scss, quarto/html/theme-dark.scss]
+    toc: true
+    toc-title: "На странице"
+    code-copy: true
+    code-overflow: wrap
+    highlight-style: github
+    other-links-title: "Скачать"
+  pdf:
+    pdf-engine: xelatex
+    documentclass: scrartcl
+    papersize: a4
+    fontsize: 11pt
+    mainfont: PT Serif
+    sansfont: PT Sans
+    monofont: PT Mono
+    monofontoptions: [Scale=0.9, HyphenChar=None]
+    geometry: [top=24mm, bottom=26mm, left=24mm, right=22mm]
+    toc: true
+    toc-depth: 2
+    toc-title: "Содержание"
+    number-sections: true
+    colorlinks: true
+    linkcolor: mlaccent
+    urlcolor: mlaccent
+    highlight-style: github
+    include-in-header: quarto/latex/preamble.tex

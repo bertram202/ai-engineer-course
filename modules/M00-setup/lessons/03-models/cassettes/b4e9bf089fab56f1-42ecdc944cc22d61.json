@@ -1,0 +1,53 @@
+{
+ "recorded_at": "2026-09-25T18:38:35+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Извлеки данные: Анна Смирнова, 29 лет, пишет на Python и Go, знает SQL."
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "person",
+     "schema": {
+      "type": "object",
+      "properties": {
+       "name": {
+        "type": "string"
+       },
+       "age": {
+        "type": "integer"
+       },
+       "skills": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      },
+      "required": [
+       "name",
+       "age",
+       "skills"
+      ]
+     }
+    }
+   },
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"name\\\": \\\"Анна Смирнова\\\",\\n  \\\"age\\\": 29,\\n  \\\"skills\\\": [\\n    \\\"Python\\\",\\n    \\\"Go\\\",\\n    \\\"SQL\\\"\\n  ]\\n}\"}}],\"created\":1790361515,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":49,\"prompt_tokens\":36,\"total_tokens\":85,\"prompt_tokens_details\":{\"cached_tokens\":0}},\"id\":\"chatcmpl-4UIlK5JDHt6qokRuGnoxBH0DcXEsTQpB\",\"timings\":{\"cache_n\":0,\"prompt_n\":36,\"prompt_ms\":320.346,\"prompt_per_token_ms\":8.8985,\"prompt_per_second\":112.37849075686913,\"predicted_n\":49,\"predicted_ms\":1740.551,\"predicted_per_token_ms\":36.26147916666667,\"predicted_per_second\":27.57747402977563}}"
+ }
+}

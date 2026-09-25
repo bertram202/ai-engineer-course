@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  secrets:
+    name: Нет секретов
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/check_secrets.py
+
+  library:
+    name: Библиотека mlcourse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv run pytest -q
+        working-directory: shared
+
+  list-modules:
+    runs-on: ubuntu-latest
+    outputs:
+      modules: ${{ steps.ls.outputs.modules }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: ls
+        run: echo "modules=$(ls modules | jq -R . | jq -cs .)" >> "$GITHUB_OUTPUT"
+
+  module:
+    name: ${{ matrix.module }}
+    needs: list-modules
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        module: ${{ fromJson(needs.list-modules.outputs.modules) }}
+    env:
+      LLM_CACHE: replay  # в CI нет моделей: ответы только из кассет
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Эталонные решения проходят тесты
+        working-directory: modules/${{ matrix.module }}
+        run: MLCOURSE_TARGET=solutions uv run pytest -q
+      - name: Заготовки упражнений тесты не проходят
+        working-directory: modules/${{ matrix.module }}
+        run: "! uv run pytest -q > /dev/null"
+      - name: Ноутбуки выполняются на кассетах
+        run: scripts/run_notebooks.sh modules/${{ matrix.module }}

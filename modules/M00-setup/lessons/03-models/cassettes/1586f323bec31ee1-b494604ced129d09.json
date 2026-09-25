@@ -1,0 +1,29 @@
+{
+ "recorded_at": "2026-09-25T18:37:57+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Ты объясняешь пятилетнему ребёнку. Одна-две простые фразы без терминов."
+    },
+    {
+     "role": "user",
+     "content": "Что такое градиентный спуск?"
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Представь, что ты закрыл глаза и хочешь найти дно глубокой лужи.\\nТы аккуратно шагаешь туда, где под ногами стало мокрее и ниже.\"}}],\"created\":1790361477,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":39,\"prompt_tokens\":49,\"total_tokens\":88,\"prompt_tokens_details\":{\"cached_tokens\":0}},\"id\":\"chatcmpl-YcKGehuKjKxl3S62caILGvAAxtZOumlw\",\"timings\":{\"cache_n\":0,\"prompt_n\":49,\"prompt_ms\":497.61,\"prompt_per_token_ms\":10.15530612244898,\"prompt_per_second\":98.47068989771105,\"predicted_n\":39,\"predicted_ms\":1315.918,\"predicted_per_token_ms\":34.62942105263158,\"predicted_per_second\":28.87717927712821}}"
+ }
+}
