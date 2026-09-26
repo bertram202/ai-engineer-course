@@ -10,15 +10,15 @@ jobs:
     name: Нет секретов
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: python3 scripts/check_secrets.py
 
   library:
     name: Библиотека mlcourse
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.2.0
       - run: uv run pytest -q
         working-directory: shared
 
@@ -27,7 +27,7 @@ jobs:
     outputs:
       modules: ${{ steps.ls.outputs.modules }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - id: ls
         run: echo "modules=$(ls modules | jq -R . | jq -cs .)" >> "$GITHUB_OUTPUT"
 
@@ -42,8 +42,8 @@ jobs:
     env:
       LLM_CACHE: replay  # в CI нет моделей: ответы только из кассет
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.2.0
       - name: Эталонные решения проходят тесты
         working-directory: modules/${{ matrix.module }}
         run: MLCOURSE_TARGET=solutions uv run pytest -q
