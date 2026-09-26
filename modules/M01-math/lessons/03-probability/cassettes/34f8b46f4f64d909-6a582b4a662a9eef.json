@@ -1,0 +1,29 @@
+{
+ "recorded_at": "2026-09-26T11:06:56+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Suggest a name for a ginger cat. Answer with a single word."
+    }
+   ],
+   "model": "qwen3:8b",
+   "logprobs": true,
+   "max_tokens": 1,
+   "temperature": 0,
+   "top_logprobs": 20,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json",
+  "body": "{\"id\":\"chatcmpl-622\",\"object\":\"chat.completion\",\"created\":1790420816,\"model\":\"qwen3:8b\",\"system_fingerprint\":\"fp_ollama\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Sp\"},\"finish_reason\":\"length\",\"logprobs\":{\"content\":[{\"token\":\"Sp\",\"logprob\":-0.4842150807380676,\"bytes\":[83,112],\"top_logprobs\":[{\"token\":\"Sp\",\"logprob\":-0.4842150807380676,\"bytes\":[83,112]},{\"token\":\"C\",\"logprob\":-1.49825119972229,\"bytes\":[67]},{\"token\":\"M\",\"logprob\":-2.780731439590454,\"bytes\":[77]},{\"token\":\"R\",\"logprob\":-3.379526376724243,\"bytes\":[82]},{\"token\":\"G\",\"logprob\":-3.9945261478424072,\"bytes\":[71]},{\"token\":\"Spark\",\"logprob\":-4.475290775299072,\"bytes\":[83,112,97,114,107]},{\"token\":\"T\",\"logprob\":-4.632002353668213,\"bytes\":[84]},{\"token\":\"Sim\",\"logprob\":-5.7210540771484375,\"bytes\":[83,105,109]},{\"token\":\"P\",\"logprob\":-5.816308975219727,\"bytes\":[80]},{\"token\":\"Toast\",\"logprob\":-6.019655704498291,\"bytes\":[84,111,97,115,116]},{\"token\":\"Gar\",\"logprob\":-6.2428154945373535,\"bytes\":[71,97,114]},{\"token\":\"Per\",\"logprob\":-6.613277912139893,\"bytes\":[80,101,114]},{\"token\":\"F\",\"logprob\":-6.736652851104736,\"bytes\":[70]},{\"token\":\"S\",\"logprob\":-6.959482669830322,\"bytes\":[83]},{\"token\":\"B\",\"logprob\":-7.132036209106445,\"bytes\":[66]},{\"token\":\"Em\",\"logprob\":-7.186722278594971,\"bytes\":[69,109]},{\"token\":\"Z\",\"logprob\":-7.198099136352539,\"bytes\":[90]},{\"token\":\"Tab\",\"logprob\":-7.24990701675415,\"bytes\":[84,97,98]},{\"token\":\"Burn\",\"logprob\":-7.466858386993408,\"bytes\":[66,117,114,110]},{\"token\":\"Tur\",\"logprob\":-7.531921863555908,\"bytes\":[84,117,114]}]}]}}],\"usage\":{\"prompt_tokens\":31,\"prompt_tokens_details\":{\"cached_tokens\":3},\"completion_tokens\":1,\"total_tokens\":32}}\n"
+ }
+}

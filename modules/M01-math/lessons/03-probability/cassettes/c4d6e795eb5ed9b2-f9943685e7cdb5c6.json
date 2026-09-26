@@ -1,0 +1,29 @@
+{
+ "recorded_at": "2026-09-26T11:06:55+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Pick a random animal. Answer with a single word."
+    }
+   ],
+   "model": "qwen3:8b",
+   "logprobs": true,
+   "max_tokens": 1,
+   "temperature": 0,
+   "top_logprobs": 20,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json",
+  "body": "{\"id\":\"chatcmpl-589\",\"object\":\"chat.completion\",\"created\":1790420815,\"model\":\"qwen3:8b\",\"system_fingerprint\":\"fp_ollama\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"L\"},\"finish_reason\":\"length\",\"logprobs\":{\"content\":[{\"token\":\"L\",\"logprob\":-0.6218209862709045,\"bytes\":[76],\"top_logprobs\":[{\"token\":\"L\",\"logprob\":-0.6218209862709045,\"bytes\":[76]},{\"token\":\"T\",\"logprob\":-1.2650095224380493,\"bytes\":[84]},{\"token\":\"Ele\",\"logprob\":-2.146700620651245,\"bytes\":[69,108,101]},{\"token\":\"Z\",\"logprob\":-3.9347445964813232,\"bytes\":[90]},{\"token\":\"Wh\",\"logprob\":-3.940575122833252,\"bytes\":[87,104]},{\"token\":\"Wolf\",\"logprob\":-4.4632134437561035,\"bytes\":[87,111,108,102]},{\"token\":\"Bear\",\"logprob\":-5.556223392486572,\"bytes\":[66,101,97,114]},{\"token\":\"G\",\"logprob\":-5.684032917022705,\"bytes\":[71]},{\"token\":\"E\",\"logprob\":-6.518219470977783,\"bytes\":[69]},{\"token\":\"Fox\",\"logprob\":-6.676405429840088,\"bytes\":[70,111,120]},{\"token\":\"P\",\"logprob\":-7.051058292388916,\"bytes\":[80]},{\"token\":\"R\",\"logprob\":-7.701305866241455,\"bytes\":[82]},{\"token\":\"Dog\",\"logprob\":-8.00780963897705,\"bytes\":[68,111,103]},{\"token\":\"Se\",\"logprob\":-8.35704517364502,\"bytes\":[83,101]},{\"token\":\"H\",\"logprob\":-8.601054191589355,\"bytes\":[72]},{\"token\":\"S\",\"logprob\":-8.61340618133545,\"bytes\":[83]},{\"token\":\"Le\",\"logprob\":-8.830166816711426,\"bytes\":[76,101]},{\"token\":\"Cow\",\"logprob\":-8.869946479797363,\"bytes\":[67,111,119]},{\"token\":\"D\",\"logprob\":-8.973824501037598,\"bytes\":[68]},{\"token\":\"F\",\"logprob\":-9.294173240661621,\"bytes\":[70]}]}]}}],\"usage\":{\"prompt_tokens\":27,\"prompt_tokens_details\":{\"cached_tokens\":3},\"completion_tokens\":1,\"total_tokens\":28}}\n"
+ }
+}

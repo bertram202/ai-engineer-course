@@ -1,0 +1,29 @@
+{
+ "recorded_at": "2026-09-26T11:06:54+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Name a programming language. Answer with a single word."
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "logprobs": true,
+   "max_tokens": 1,
+   "temperature": 0,
+   "top_logprobs": 20,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"length\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Python\"},\"logprobs\":{\"content\":[{\"id\":29292,\"token\":\"Python\",\"bytes\":[80,121,116,104,111,110],\"logprob\":-0.0017797682667151093,\"top_logprobs\":[{\"id\":29292,\"token\":\"Python\",\"bytes\":[80,121,116,104,111,110],\"logprob\":-0.0017797682667151093},{\"id\":12654,\"token\":\" Python\",\"bytes\":[32,80,121,116,104,111,110],\"logprob\":-6.859455108642578},{\"id\":14605,\"token\":\"Java\",\"bytes\":[74,97,118,97],\"logprob\":-7.923524856567383},{\"id\":28514,\"token\":\"JavaScript\",\"bytes\":[74,97,118,97,83,99,114,105,112,116],\"logprob\":-8.772706985473633},{\"id\":49,\"token\":\"R\",\"bytes\":[82],\"logprob\":-9.190361022949219},{\"id\":34,\"token\":\"C\",\"bytes\":[67],\"logprob\":-11.102106094360352},{\"id\":13432,\"token\":\"Py\",\"bytes\":[80,121],\"logprob\":-11.31374740600586},{\"id\":248046,\"token\":\"\",\"bytes\":[],\"logprob\":-11.394828796386719},{\"id\":12305,\"token\":\"python\",\"bytes\":[112,121,116,104,111,110],\"logprob\":-11.527965545654297},{\"id\":59633,\"token\":\"Ruby\",\"bytes\":[82,117,98,121],\"logprob\":-11.586318969726563},{\"id\":53479,\"token\":\"Swift\",\"bytes\":[83,119,105,102,116],\"logprob\":-12.694229125976563},{\"id\":47,\"token\":\"P\",\"bytes\":[80],\"logprob\":-12.768571853637695},{\"id\":89934,\"token\":\"PYTHON\",\"bytes\":[80,89,84,72,79,78],\"logprob\":-13.115915298461914},{\"id\":10533,\"token\":\"Go\",\"bytes\":[71,111],\"logprob\":-13.173770904541016},{\"id\":32,\"token\":\"A\",\"bytes\":[65],\"logprob\":-13.233505249023438},{\"id\":43,\"token\":\"L\",\"bytes\":[76],\"logprob\":-13.284496307373047},{\"id\":35,\"token\":\"D\",\"bytes\":[68],\"logprob\":-13.503314971923828},{\"id\":33,\"token\":\"B\",\"bytes\":[66],\"logprob\":-13.638710021972656},{\"id\":50,\"token\":\"S\",\"bytes\":[83],\"logprob\":-13.846081733703613},{\"id\":1,\"token\":\"\\\"\",\"bytes\":[34],\"logprob\":-13.878875732421875}]}]}}],\"created\":1790420814,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":1,\"prompt_tokens\":23,\"total_tokens\":24,\"prompt_tokens_details\":{\"cached_tokens\":19}},\"id\":\"chatcmpl-9ry7FBppwQQVQ3rVGASaHhAlJCW3lm5o\",\"timings\":{\"cache_n\":19,\"prompt_n\":4,\"prompt_ms\":180.311,\"prompt_per_token_ms\":45.07775,\"prompt_per_second\":22.183893384208396,\"predicted_n\":1,\"predicted_ms\":0.001,\"predicted_per_token_ms\":0.0,\"predicted_per_second\":0.0}}"
+ }
+}

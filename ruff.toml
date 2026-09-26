@@ -4,10 +4,12 @@ extend-exclude = ["**/.venv", "templates"]
 
 [lint]
 select = ["E", "F", "W", "I", "UP", "B", "BLE"]
-ignore = ["E731"]
+ignore = ["E731", "B905"]  # B905: zip без strict= в учебном коде только мешает
 
 [lint.per-file-ignores]
 "**/*.ipynb" = ["E402", "E501", "B018"]
+# В заготовках упражнений импорты из решения — подсказка, что пригодится
+"modules/*/exercises/ex*.py" = ["F401"]
 
 [lint.isort]
 known-first-party = ["mlcourse"]

@@ -1,0 +1,29 @@
+{
+ "recorded_at": "2026-09-26T11:06:51+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Name one random fruit. Answer with a single word."
+    }
+   ],
+   "model": "qwen3:8b",
+   "logprobs": true,
+   "max_tokens": 1,
+   "temperature": 0,
+   "top_logprobs": 20,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json",
+  "body": "{\"id\":\"chatcmpl-664\",\"object\":\"chat.completion\",\"created\":1790420811,\"model\":\"qwen3:8b\",\"system_fingerprint\":\"fp_ollama\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"P\"},\"finish_reason\":\"length\",\"logprobs\":{\"content\":[{\"token\":\"P\",\"logprob\":-0.6368376612663269,\"bytes\":[80],\"top_logprobs\":[{\"token\":\"P\",\"logprob\":-0.6368376612663269,\"bytes\":[80]},{\"token\":\"M\",\"logprob\":-1.3746037483215332,\"bytes\":[77]},{\"token\":\"Apple\",\"logprob\":-2.2965056896209717,\"bytes\":[65,112,112,108,101]},{\"token\":\"Ban\",\"logprob\":-2.974156141281128,\"bytes\":[66,97,110]},{\"token\":\"Ki\",\"logprob\":-3.4884514808654785,\"bytes\":[75,105]},{\"token\":\"G\",\"logprob\":-4.346071720123291,\"bytes\":[71]},{\"token\":\"Orange\",\"logprob\":-4.767200946807861,\"bytes\":[79,114,97,110,103,101]},{\"token\":\"Pear\",\"logprob\":-5.372639179229736,\"bytes\":[80,101,97,114]},{\"token\":\"Str\",\"logprob\":-6.321869373321533,\"bytes\":[83,116,114]},{\"token\":\"ki\",\"logprob\":-6.715551853179932,\"bytes\":[107,105]},{\"token\":\"Gu\",\"logprob\":-6.942080020904541,\"bytes\":[71,117]},{\"token\":\"pear\",\"logprob\":-7.067272663116455,\"bytes\":[112,101,97,114]},{\"token\":\"Fig\",\"logprob\":-7.153469562530518,\"bytes\":[70,105,103]},{\"token\":\"Berry\",\"logprob\":-7.4249958992004395,\"bytes\":[66,101,114,114,121]},{\"token\":\"Blue\",\"logprob\":-7.426722049713135,\"bytes\":[66,108,117,101]},{\"token\":\"Apr\",\"logprob\":-7.980564594268799,\"bytes\":[65,112,114]},{\"token\":\"apple\",\"logprob\":-8.049553871154785,\"bytes\":[97,112,112,108,101]},{\"token\":\"Dragon\",\"logprob\":-8.404803276062012,\"bytes\":[68,114,97,103,111,110]},{\"token\":\"L\",\"logprob\":-8.44503116607666,\"bytes\":[76]},{\"token\":\" Peach\",\"logprob\":-8.449044227600098,\"bytes\":[32,80,101,97,99,104]}]}]}}],\"usage\":{\"prompt_tokens\":27,\"prompt_tokens_details\":{\"cached_tokens\":0},\"completion_tokens\":1,\"total_tokens\":28}}\n"
+ }
+}

@@ -1,0 +1,29 @@
+{
+ "recorded_at": "2026-09-26T11:06:49+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Name one random fruit. Answer with a single word."
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "logprobs": true,
+   "max_tokens": 1,
+   "temperature": 0,
+   "top_logprobs": 20,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"length\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"M\"},\"logprobs\":{\"content\":[{\"id\":44,\"token\":\"M\",\"bytes\":[77],\"logprob\":-0.12119369953870773,\"top_logprobs\":[{\"id\":44,\"token\":\"M\",\"bytes\":[77],\"logprob\":-0.12119369953870773},{\"id\":25719,\"token\":\"Apple\",\"bytes\":[65,112,112,108,101],\"logprob\":-2.8935515880584717},{\"id\":70110,\"token\":\"Ki\",\"bytes\":[75,105],\"logprob\":-3.3897788524627686},{\"id\":48554,\"token\":\"Ban\",\"bytes\":[66,97,110],\"logprob\":-5.158013343811035},{\"id\":47,\"token\":\"P\",\"bytes\":[80],\"logprob\":-5.257760047912598},{\"id\":37853,\"token\":\"Mel\",\"bytes\":[77,101,108],\"logprob\":-5.667119026184082},{\"id\":42,\"token\":\"K\",\"bytes\":[75],\"logprob\":-6.061169147491455},{\"id\":38,\"token\":\"G\",\"bytes\":[71],\"logprob\":-6.731396675109863},{\"id\":222329,\"token\":\"Pap\",\"bytes\":[80,97,112],\"logprob\":-6.777520179748535},{\"id\":40582,\"token\":\"Orange\",\"bytes\":[79,114,97,110,103,101],\"logprob\":-6.917328834533691},{\"id\":27993,\"token\":\"Fig\",\"bytes\":[70,105,103],\"logprob\":-7.2886552810668945},{\"id\":87905,\"token\":\"Pear\",\"bytes\":[80,101,97,114],\"logprob\":-7.380671501159668},{\"id\":27336,\"token\":\"Water\",\"bytes\":[87,97,116,101,114],\"logprob\":-7.513199806213379},{\"id\":20095,\"token\":\"Apr\",\"bytes\":[65,112,114],\"logprob\":-7.633797645568848},{\"id\":43,\"token\":\"L\",\"bytes\":[76],\"logprob\":-7.786044120788574},{\"id\":87735,\"token\":\" Mango\",\"bytes\":[32,77,97,110,103,111],\"logprob\":-7.857865333557129},{\"id\":2495,\"token\":\"Str\",\"bytes\":[83,116,114],\"logprob\":-7.8817949295043945},{\"id\":51253,\"token\":\"Dur\",\"bytes\":[68,117,114],\"logprob\":-8.421488761901855},{\"id\":16288,\"token\":\"Gu\",\"bytes\":[71,117],\"logprob\":-8.521550178527832},{\"id\":55882,\"token\":\"Dragon\",\"bytes\":[68,114,97,103,111,110],\"logprob\":-8.913729667663574}]}]}}],\"created\":1790420809,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":1,\"prompt_tokens\":23,\"total_tokens\":24,\"prompt_tokens_details\":{\"cached_tokens\":19}},\"id\":\"chatcmpl-VicDtFF3MzbCEfXG8LZ3wbXCN1ukTH1F\",\"timings\":{\"cache_n\":19,\"prompt_n\":4,\"prompt_ms\":186.338,\"prompt_per_token_ms\":46.5845,\"prompt_per_second\":21.46636756861188,\"predicted_n\":1,\"predicted_ms\":0.001,\"predicted_per_token_ms\":0.0,\"predicted_per_second\":0.0}}"
+ }
+}

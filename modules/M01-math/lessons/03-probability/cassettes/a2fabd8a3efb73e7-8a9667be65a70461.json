@@ -1,0 +1,29 @@
+{
+ "recorded_at": "2026-09-26T11:06:52+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Какого цвета небо в ясный день? Ответь одним словом."
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "logprobs": true,
+   "max_tokens": 1,
+   "temperature": 0,
+   "top_logprobs": 20,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"length\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"С\"},\"logprobs\":{\"content\":[{\"id\":18727,\"token\":\"С\",\"bytes\":[208,161],\"logprob\":-0.2556593716144562,\"top_logprobs\":[{\"id\":18727,\"token\":\"С\",\"bytes\":[208,161],\"logprob\":-0.2556593716144562},{\"id\":35884,\"token\":\"Г\",\"bytes\":[208,147],\"logprob\":-1.4977591037750244},{\"id\":63046,\"token\":\"го\",\"bytes\":[208,179,208,190],\"logprob\":-6.8947434425354},{\"id\":60508,\"token\":\"Не\",\"bytes\":[208,157,208,181],\"logprob\":-8.800636291503906},{\"id\":197952,\"token\":\"син\",\"bytes\":[209,129,208,184,208,189],\"logprob\":-9.26649284362793},{\"id\":197571,\"token\":\" Син\",\"bytes\":[32,208,161,208,184,208,189],\"logprob\":-9.428715705871582},{\"id\":209616,\"token\":\"Сер\",\"bytes\":[208,161,208,181,209,128],\"logprob\":-9.584619522094727},{\"id\":153040,\"token\":\" гол\",\"bytes\":[32,208,179,208,190,208,187],\"logprob\":-10.11338996887207},{\"id\":178325,\"token\":\"Го\",\"bytes\":[208,147,208,190],\"logprob\":-10.279212951660156},{\"id\":58297,\"token\":\"Б\",\"bytes\":[208,145],\"logprob\":-10.510261535644531},{\"id\":151311,\"token\":\"Ш\",\"bytes\":[208,168],\"logprob\":-10.627595901489258},{\"id\":16362,\"token\":\"П\",\"bytes\":[208,159],\"logprob\":-10.69377326965332},{\"id\":34279,\"token\":\"З\",\"bytes\":[208,151],\"logprob\":-10.765385627746582},{\"id\":25497,\"token\":\"К\",\"bytes\":[208,154],\"logprob\":-10.974504470825195},{\"id\":58427,\"token\":\" Г\",\"bytes\":[32,208,147],\"logprob\":-10.990750312805176},{\"id\":34960,\"token\":\"А\",\"bytes\":[208,144],\"logprob\":-11.022629737854004},{\"id\":176838,\"token\":\"Са\",\"bytes\":[208,161,208,176],\"logprob\":-11.084702491760254},{\"id\":218215,\"token\":\"СИ\",\"bytes\":[208,161,208,152],\"logprob\":-11.115010261535645},{\"id\":10025,\"token\":\"Blue\",\"bytes\":[66,108,117,101],\"logprob\":-11.175968170166016},{\"id\":38,\"token\":\"G\",\"bytes\":[71],\"logprob\":-11.250175476074219}]}]}}],\"created\":1790420812,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":1,\"prompt_tokens\":26,\"total_tokens\":27,\"prompt_tokens_details\":{\"cached_tokens\":22}},\"id\":\"chatcmpl-LEqLGnIoUmhY4axWqXrILENNVoZfmYNU\",\"timings\":{\"cache_n\":22,\"prompt_n\":4,\"prompt_ms\":176.54,\"prompt_per_token_ms\":44.135,\"prompt_per_second\":22.657754616517504,\"predicted_n\":1,\"predicted_ms\":0.001,\"predicted_per_token_ms\":0.0,\"predicted_per_second\":0.0}}"
+ }
+}
