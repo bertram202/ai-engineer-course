@@ -68,6 +68,18 @@ DATASETS: dict[str, Dataset] = {
             },
         ),
         Dataset(
+            name="adult",
+            title="Adult (Census Income): доход больше $50K по данным переписи США 1994 года",
+            license="CC-BY-4.0",
+            source="https://archive.ics.uci.edu/dataset/2/adult",
+            files={
+                "adult.zip": Remote(
+                    "https://archive.ics.uci.edu/static/public/2/adult.zip",
+                    "7537312dd56c2b98035880805ce99e68183a30ee468aa5329d6df0fbb3cc21bb",
+                ),
+            },
+        ),
+        Dataset(
             name="goodbooks-10k",
             title="goodbooks-10k: 6 млн оценок 10 тысяч книг",
             license="CC-BY-SA-4.0",

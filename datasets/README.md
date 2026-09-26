@@ -10,6 +10,7 @@ SHA-256 в папку `data/` в корне репозитория (или в `M
 | Датасет | Модули | Лицензия | Источник | Как загружается |
 |---|---|---|---|---|
 | digits (рукописные цифры 8×8) | M01 | CC BY 4.0 | UCI ML Repository | входит в scikit-learn |
+| Adult (доход по данным переписи США) | M02 | CC BY 4.0 | [UCI ML Repository](https://archive.ics.uci.edu/dataset/2/adult) | `fetch("adult")` |
 | RuReviews (отзывы о товарах, 3 класса) | M02, M04 | Apache 2.0 | [sismetanin/rureviews](https://github.com/sismetanin/rureviews) | `fetch("rureviews")` |
 | goodbooks-10k (оценки книг) | M05 | CC BY-SA 4.0 | [zygmuntz/goodbooks-10k](https://github.com/zygmuntz/goodbooks-10k) | `fetch("goodbooks-10k")` |
 

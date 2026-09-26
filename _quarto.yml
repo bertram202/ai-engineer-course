@@ -45,6 +45,14 @@ website:
           - modules/M01-math/lessons/01-linear-algebra/lesson.ipynb
           - modules/M01-math/lessons/02-gradients/lesson.ipynb
           - modules/M01-math/lessons/03-probability/lesson.ipynb
+      - section: "M02 · Классическое ML"
+        contents:
+          - modules/M02-classic-ml/theory/theory.qmd
+          - modules/M02-classic-ml/theory/cheatsheet.qmd
+          - modules/M02-classic-ml/lessons/01-validation/lesson.ipynb
+          - modules/M02-classic-ml/lessons/02-linear-models/lesson.ipynb
+          - modules/M02-classic-ml/lessons/03-boosting/lesson.ipynb
+          - modules/M02-classic-ml/lessons/04-unsupervised/lesson.ipynb
   page-footer:
     left: "AI-инженер: от устройства LLM до мультиагентных систем"
     right: "Тексты — CC BY-NC-SA 4.0 · Код — MIT"
