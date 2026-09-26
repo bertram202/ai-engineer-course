@@ -28,6 +28,15 @@ KEY_PATTERNS = [
     re.compile(r"\bgh[pousr]_[A-Za-z0-9]{30,}"),  # GitHub
     re.compile(r"\bhf_[A-Za-z0-9]{30,}"),  # Hugging Face
 ]
+
+
+def looks_like_key(token: str) -> bool:
+    """Настоящие ключи случайны: в них есть и цифры, и буквы обоих регистров.
+    Так отсекаются CSS-классы вроде `sk-toggleable__label` из HTML-вывода scikit-learn."""
+    body = token.split("_", 1)[-1] if token.startswith(("gh", "hf_")) else token[3:]
+    return any(c.isdigit() for c in body) and any(c.isupper() for c in body) and any(c.islower() for c in body)
+
+
 HOME_PATH = re.compile(r"(/Users|/home)/(?!runner/)[A-Za-z0-9._-]+/")
 SKIP_SUFFIXES = {".png", ".jpg", ".jpeg", ".gif", ".pdf", ".ttf", ".otf", ".woff", ".woff2", ".ico", ".lock"}
 
@@ -66,7 +75,12 @@ def scan(path: Path, secrets: list[str]) -> list[str]:
     except (UnicodeDecodeError, OSError):
         return []
     problems = [f"значение из .env ({secret[:4]}…)" for secret in secrets if secret in text]
-    problems += [f"похоже на ключ API ({m.group()[:6]}…)" for p in KEY_PATTERNS for m in p.finditer(text)]
+    problems += [
+        f"похоже на ключ API ({m.group()[:6]}…)"
+        for p in KEY_PATTERNS
+        for m in p.finditer(text)
+        if looks_like_key(m.group())
+    ]
     if path.suffix == ".ipynb" or "cassettes" in path.parts:
         problems += [f"путь с именем пользователя ({m.group()})" for m in HOME_PATH.finditer(text)]
     return problems
