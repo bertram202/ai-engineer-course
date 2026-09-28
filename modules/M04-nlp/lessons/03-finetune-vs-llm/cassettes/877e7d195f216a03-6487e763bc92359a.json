@@ -1,0 +1,57 @@
+{
+ "recorded_at": "2026-09-28T21:14:50+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Перед тобой отзыв покупателя об одежде с маркетплейса. Покупатель поставил товару оценку от 1 до 5 звёзд.\nУгадай, сколько звёзд он поставил. Учти: многие ставят 5 звёзд даже при мелких недочётах, а 3 звезды — когда товар «так себе».\nОтветь JSON с полем stars."
+    },
+    {
+     "role": "user",
+     "content": "Приятный материал, хорошо тянется, но подчеркивает все недостатки фигуры. Цвет понравился. Посмотрим как поведет себя после стирки."
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "stars",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "stars": {
+        "type": "integer",
+        "enum": [
+         1,
+         2,
+         3,
+         4,
+         5
+        ]
+       }
+      },
+      "required": [
+       "stars"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"stars\\\": 4\\n}\"}}],\"created\":1790630090,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":11,\"prompt_tokens\":133,\"total_tokens\":144,\"prompt_tokens_details\":{\"cached_tokens\":88}},\"id\":\"chatcmpl-5UdmX7quqG7nypQnklIYa7X1R7dIJDWv\",\"timings\":{\"cache_n\":88,\"prompt_n\":45,\"prompt_ms\":343.298,\"prompt_per_token_ms\":7.628844444444445,\"prompt_per_second\":131.08145110079292,\"predicted_n\":11,\"predicted_ms\":418.902,\"predicted_per_token_ms\":41.8902,\"predicted_per_second\":23.871931859957698}}"
+ }
+}

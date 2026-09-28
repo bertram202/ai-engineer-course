@@ -11,7 +11,7 @@ SHA-256 в папку `data/` в корне репозитория (или в `M
 |---|---|---|---|---|
 | digits (рукописные цифры 8×8) | M01 | CC BY 4.0 | UCI ML Repository | входит в scikit-learn |
 | Adult (доход по данным переписи США) | M02 | CC BY 4.0 | [UCI ML Repository](https://archive.ics.uci.edu/dataset/2/adult) | `fetch("adult")` |
-| RuReviews (отзывы о товарах, 3 класса) | M02, M04 | Apache 2.0 | [sismetanin/rureviews](https://github.com/sismetanin/rureviews) | `fetch("rureviews")` |
+| RuReviews (отзывы о товарах, 3 класса) | M02, M03, M04 | Apache 2.0 | [sismetanin/rureviews](https://github.com/sismetanin/rureviews) | `fetch("rureviews")` |
 | Fashion-MNIST (одежда 28×28, 10 классов) | M03 | MIT | [zalandoresearch/fashion-mnist](https://github.com/zalandoresearch/fashion-mnist) | torchvision → `data_dir("fashion-mnist")` |
 | EuroSAT (спутниковые снимки 64×64, 10 классов) | M03 | MIT | [phelber/EuroSAT](https://github.com/phelber/EuroSAT) | torchvision → `data_dir("eurosat")` |
 | goodbooks-10k (оценки книг) | M05 | CC BY-SA 4.0 | [zygmuntz/goodbooks-10k](https://github.com/zygmuntz/goodbooks-10k) | `fetch("goodbooks-10k")` |
@@ -29,4 +29,8 @@ SHA-256 в папку `data/` в корне репозитория (или в `M
 | bge-m3 | M00, M01, M02, M11 | MIT |
 | ResNet-18 `timm/resnet18.a1_in1k` | M03 | Apache 2.0 |
 | CLIP ViT-B/32 `openai/clip-vit-base-patch32` | M03 | MIT (репозиторий openai/CLIP) |
+| rubert-tiny2 `cointegrated/rubert-tiny2` | M04 | MIT |
+| `seara/rubert-tiny2-russian-sentiment` | M04 | MIT |
+| GPT-2 (только токенизатор) `openai-community/gpt2` | M04 | MIT |
+| Qwen3 (только токенизатор) `Qwen/Qwen3-8B` | M04 | Apache 2.0 |
 

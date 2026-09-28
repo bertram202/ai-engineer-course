@@ -1,0 +1,57 @@
+{
+ "recorded_at": "2026-09-28T21:23:45+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Перед тобой отзыв покупателя об одежде с маркетплейса. Покупатель поставил товару оценку от 1 до 5 звёзд.\nУгадай, сколько звёзд он поставил. Учти: многие ставят 5 звёзд даже при мелких недочётах, а 3 звезды — когда товар «так себе».\nОтветь JSON с полем stars."
+    },
+    {
+     "role": "user",
+     "content": "5++++++++ Продавец очень общительный, человечный. Жаль что товар не пришел. Из Китая вылетел быстро но наша почта как всегда на высоте где-то пртеряли посылку, нужно выбирать другого поставщика. Открыла спор, деньги вернули быстро. Очень жаль что так получилось. Если посылка все таки прийдет дополню отзыв. Продовца РЕКОМЕНДУЮ!!!!!!!"
+    }
+   ],
+   "model": "qwen3:8b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "stars",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "stars": {
+        "type": "integer",
+        "enum": [
+         1,
+         2,
+         3,
+         4,
+         5
+        ]
+       }
+      },
+      "required": [
+       "stars"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json",
+  "body": "{\"id\":\"chatcmpl-559\",\"object\":\"chat.completion\",\"created\":1790630625,\"model\":\"qwen3:8b\",\"system_fingerprint\":\"fp_ollama\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"stars\\\": 5\\n}\"},\"finish_reason\":\"stop\"}],\"usage\":{\"prompt_tokens\":239,\"prompt_tokens_details\":{\"cached_tokens\":115},\"completion_tokens\":10,\"total_tokens\":249}}\n"
+ }
+}

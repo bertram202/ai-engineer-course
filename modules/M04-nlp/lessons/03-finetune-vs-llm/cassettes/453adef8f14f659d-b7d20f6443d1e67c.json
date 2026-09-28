@@ -1,0 +1,57 @@
+{
+ "recorded_at": "2026-09-28T21:15:02+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Перед тобой отзыв покупателя об одежде с маркетплейса. Покупатель поставил товару оценку от 1 до 5 звёзд.\nУгадай, сколько звёзд он поставил. Учти: многие ставят 5 звёзд даже при мелких недочётах, а 3 звезды — когда товар «так себе».\nОтветь JSON с полем stars."
+    },
+    {
+     "role": "user",
+     "content": "Очень классное, рекомендую! Доставка до Новороссийска две недели! Только на высоких девушек и худеньких!"
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "stars",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "stars": {
+        "type": "integer",
+        "enum": [
+         1,
+         2,
+         3,
+         4,
+         5
+        ]
+       }
+      },
+      "required": [
+       "stars"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"stars\\\": 4\\n}\"}}],\"created\":1790630102,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":11,\"prompt_tokens\":126,\"total_tokens\":137,\"prompt_tokens_details\":{\"cached_tokens\":88}},\"id\":\"chatcmpl-JUwbFd4BR71NJp11D5SUz4E1Q6cG7b2F\",\"timings\":{\"cache_n\":88,\"prompt_n\":38,\"prompt_ms\":310.49,\"prompt_per_token_ms\":8.170789473684211,\"prompt_per_second\":122.38719443460337,\"predicted_n\":11,\"predicted_ms\":650.713,\"predicted_per_token_ms\":65.0713,\"predicted_per_second\":15.367758136075352}}"
+ }
+}

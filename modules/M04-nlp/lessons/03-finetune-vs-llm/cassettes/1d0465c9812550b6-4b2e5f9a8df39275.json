@@ -1,0 +1,55 @@
+{
+ "recorded_at": "2026-09-28T20:55:45+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Ты оцениваешь тональность отзывов покупателей об одежде с маркетплейса.\nКлассы:\n- negative — покупатель недоволен: товар не подошёл, плохое качество, не пришёл, обман;\n- neutral — оценка смешанная или сдержанная: есть и плюсы, и минусы, «нормально», «соответствует цене»;\n- positive — покупатель доволен: хвалит товар, продавца или доставку.\nОтветь JSON с полем label."
+    },
+    {
+     "role": "user",
+     "content": "Оформила заказ 11.11, жду жду а его не отправляют, пишу продавцу он игнорит , ответил только на второй раз, в ответе никакой конкретики о том , когда отправит товар! В итоге получила товар на кубани через месяц( думаю товар за такую цену можно было и транспортной отправить. Вместе с жилетом положили 2 резинки для волос, как будто я ребёнок ( когда моя подруга заказала шубку и ей долго отправляли товар ей положили меховую шапку, а тут резинка за 5₽, продавец жмот! Что касается самого жилета сшит вполне хорошо, кое где торчат нитки, но это видимо норма для китая . Села жилетка отлично ! А вот чем я сильно разочарована , тем что мех линяет ( не знаю на сколько сезонов его хватит ( ещё не понравились застежки , вечно расстегивается , можно было пришить застегивающиеся , а не просто цепляющуюся. "
+    }
+   ],
+   "model": "qwen3:8b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "sentiment",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string",
+        "enum": [
+         "negative",
+         "neutral",
+         "positive"
+        ]
+       }
+      },
+      "required": [
+       "label"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json",
+  "body": "{\"id\":\"chatcmpl-455\",\"object\":\"chat.completion\",\"created\":1790628945,\"model\":\"qwen3:8b\",\"system_fingerprint\":\"fp_ollama\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"label\\\": \\\"negative\\\"\\n}\"},\"finish_reason\":\"stop\"}],\"usage\":{\"prompt_tokens\":434,\"prompt_tokens_details\":{\"cached_tokens\":144},\"completion_tokens\":10,\"total_tokens\":444}}\n"
+ }
+}

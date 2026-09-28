@@ -1,0 +1,55 @@
+{
+ "recorded_at": "2026-09-28T19:59:19+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Ты оцениваешь тональность отзывов покупателей об одежде с маркетплейса.\nКлассы:\n- negative — покупатель недоволен: товар не подошёл, плохое качество, не пришёл, обман;\n- neutral — оценка смешанная или сдержанная: есть и плюсы, и минусы, «нормально», «соответствует цене»;\n- positive — покупатель доволен: хвалит товар, продавца или доставку.\nОтветь JSON с полем label."
+    },
+    {
+     "role": "user",
+     "content": "цвет горчичный и малиновый.длина еле попу прикрывает, а рост у меня 160 см.это разочарование! смотрела отзывы с   фото, надеялась, что придет длинный яркий кардиган, а пришла тусклая короткая кофта!еще и много ниток внутри. рукава и воротник сшиты так, что носить неудобно, тянет. продавец обман не признавал, открыла спор и вернула половину денег."
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "sentiment",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string",
+        "enum": [
+         "negative",
+         "neutral",
+         "positive"
+        ]
+       }
+      },
+      "required": [
+       "label"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"label\\\": \\\"negative\\\"\\n}\"}}],\"created\":1790625421,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":12,\"prompt_tokens\":235,\"total_tokens\":247,\"prompt_tokens_details\":{\"cached_tokens\":114}},\"id\":\"chatcmpl-YlNKJyXsOTDBBt4bIq6FXaU7BJmOVxbz\",\"timings\":{\"cache_n\":114,\"prompt_n\":121,\"prompt_ms\":371.383,\"prompt_per_token_ms\":3.0692809917355373,\"prompt_per_second\":325.8092050524661,\"predicted_n\":12,\"predicted_ms\":336.412,\"predicted_per_token_ms\":30.582909090909087,\"predicted_per_second\":32.69800126035932}}"
+ }
+}

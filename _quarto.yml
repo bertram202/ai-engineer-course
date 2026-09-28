@@ -61,6 +61,13 @@ website:
           - modules/M03-deep-learning/lessons/02-pytorch/lesson.ipynb
           - modules/M03-deep-learning/lessons/03-vision/lesson.ipynb
           - modules/M03-deep-learning/lessons/04-embeddings/lesson.ipynb
+      - section: "M04 · NLP и Hugging Face"
+        contents:
+          - modules/M04-nlp/theory/theory.qmd
+          - modules/M04-nlp/theory/cheatsheet.qmd
+          - modules/M04-nlp/lessons/01-baselines/lesson.ipynb
+          - modules/M04-nlp/lessons/02-huggingface/lesson.ipynb
+          - modules/M04-nlp/lessons/03-finetune-vs-llm/lesson.ipynb
   page-footer:
     left: "AI-инженер: от устройства LLM до мультиагентных систем"
     right: "Тексты — CC BY-NC-SA 4.0 · Код — MIT"

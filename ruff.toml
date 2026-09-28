@@ -13,3 +13,5 @@ ignore = ["E731", "B905"]  # B905: zip без strict= в учебном коде
 
 [lint.isort]
 known-first-party = ["mlcourse"]
+# папка datasets/ в корне репозитория — не пакет; datasets — библиотека Hugging Face
+known-third-party = ["datasets"]

@@ -1,0 +1,55 @@
+{
+ "recorded_at": "2026-09-28T19:59:39+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Ты оцениваешь тональность отзывов покупателей об одежде с маркетплейса.\nКлассы:\n- negative — покупатель недоволен: товар не подошёл, плохое качество, не пришёл, обман;\n- neutral — оценка смешанная или сдержанная: есть и плюсы, и минусы, «нормально», «соответствует цене»;\n- positive — покупатель доволен: хвалит товар, продавца или доставку.\nОтветь JSON с полем label."
+    },
+    {
+     "role": "user",
+     "content": "продавец долго отправлял товар, но доставка довольно быстрая и курьером в руки. сам пухан полное равно, сидит отвратно, рукава короткие, весь в нитках, выглядит так, будто его пошили из мусорного мешка, на какую погоду тоже непонятно. не понимаю почему столько хороших отзывов про это, потому что на Али можно в 2 раза дешевле купить куртку гораздо лучше."
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "sentiment",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string",
+        "enum": [
+         "negative",
+         "neutral",
+         "positive"
+        ]
+       }
+      },
+      "required": [
+       "label"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"label\\\": \\\"negative\\\"\\n}\"}}],\"created\":1790625579,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":12,\"prompt_tokens\":218,\"total_tokens\":230,\"prompt_tokens_details\":{\"cached_tokens\":114}},\"id\":\"chatcmpl-iKWZBoYrb5xcUUfzZzy74a29RJu1zwfn\",\"timings\":{\"cache_n\":114,\"prompt_n\":104,\"prompt_ms\":398.982,\"prompt_per_token_ms\":3.8363653846153847,\"prompt_per_second\":260.66338832328273,\"predicted_n\":12,\"predicted_ms\":335.769,\"predicted_per_token_ms\":30.524454545454546,\"predicted_per_second\":32.760618163082356}}"
+ }
+}

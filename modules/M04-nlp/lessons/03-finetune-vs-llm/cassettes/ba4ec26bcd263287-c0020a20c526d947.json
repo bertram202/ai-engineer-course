@@ -1,0 +1,57 @@
+{
+ "recorded_at": "2026-09-28T21:14:53+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Перед тобой отзыв покупателя об одежде с маркетплейса. Покупатель поставил товару оценку от 1 до 5 звёзд.\nУгадай, сколько звёзд он поставил. Учти: многие ставят 5 звёзд даже при мелких недочётах, а 3 звезды — когда товар «так себе».\nОтветь JSON с полем stars."
+    },
+    {
+     "role": "user",
+     "content": "Заказ был отправлен 28.09 получила на почте 16.10. Достаточно быстро пришло) упаковано суперски. Все пакеты запечатаны. Юбка прослоена спец.бумагой, видимо во избежание склеек.\n\n По размеру подходит идеально. Немного тянется. Сшито аккуратно. Запах присутствует непосредственно с изнаночной стороны. Не сильный. Думаю выветрится. Юбка очень эффектная! Я влюблена)\n\nПозже дополню отзыв."
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "stars",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "stars": {
+        "type": "integer",
+        "enum": [
+         1,
+         2,
+         3,
+         4,
+         5
+        ]
+       }
+      },
+      "required": [
+       "stars"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"stars\\\": 5\\n}\"}}],\"created\":1790630092,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":11,\"prompt_tokens\":213,\"total_tokens\":224,\"prompt_tokens_details\":{\"cached_tokens\":88}},\"id\":\"chatcmpl-jsl2uDpvtzGd3kFmu0LDvLO1EDgM70WB\",\"timings\":{\"cache_n\":88,\"prompt_n\":125,\"prompt_ms\":375.617,\"prompt_per_token_ms\":3.0049360000000003,\"prompt_per_second\":332.78578978054776,\"predicted_n\":11,\"predicted_ms\":316.358,\"predicted_per_token_ms\":31.6358,\"predicted_per_second\":31.60975856466408}}"
+ }
+}

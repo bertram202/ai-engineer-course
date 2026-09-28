@@ -1,0 +1,103 @@
+{
+ "recorded_at": "2026-09-28T21:08:21+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Ты оцениваешь тональность отзывов покупателей об одежде с маркетплейса.\nКлассы:\n- negative — покупатель недоволен: товар не подошёл, плохое качество, не пришёл, обман;\n- neutral — оценка смешанная или сдержанная: есть и плюсы, и минусы, «нормально», «соответствует цене»;\n- positive — покупатель доволен: хвалит товар, продавца или доставку.\nОтветь JSON с полем label."
+    },
+    {
+     "role": "user",
+     "content": "Привет, друг! Рубашка хорошая, упаковка как в магазине, трэк отслеживался. по размеру подошло. я довольна. Подскажите, на следующую покупку я могу рассчитывать на скидку? Спасибо."
+    },
+    {
+     "role": "assistant",
+     "content": "{\"label\": \"positive\"}"
+    },
+    {
+     "role": "user",
+     "content": "товар не пришел деньги не вернули продавец не общителен"
+    },
+    {
+     "role": "assistant",
+     "content": "{\"label\": \"negative\"}"
+    },
+    {
+     "role": "user",
+     "content": "Не понимаю хвалебных отзывов на данный товар.Юбка на рост158,талия80 ,бедра98,по размерной сетке-узкая,в ней невозможно шагу ступить,сесть,молния ужасная,нитки гнилые,сорвалось на щлице после первой примерки."
+    },
+    {
+     "role": "assistant",
+     "content": "{\"label\": \"neutral\"}"
+    },
+    {
+     "role": "user",
+     "content": "Заказала красную и розовую, розовая оказалась меньше и рукава очень короткие, можно носить только как 3 четверти, за это сняла звёзды."
+    },
+    {
+     "role": "assistant",
+     "content": "{\"label\": \"neutral\"}"
+    },
+    {
+     "role": "user",
+     "content": "Нормальная"
+    },
+    {
+     "role": "assistant",
+     "content": "{\"label\": \"positive\"}"
+    },
+    {
+     "role": "user",
+     "content": "Запах ужасный! Размер не сходиться. Продавец ужасно обещается"
+    },
+    {
+     "role": "assistant",
+     "content": "{\"label\": \"negative\"}"
+    },
+    {
+     "role": "user",
+     "content": "Расстроена. Мне нужен был именно синий цвет! Если его нет в наличии, спросите устроит ли меня чёрный, если нет, то верните деньги. Мне совсем не нужны были чёрные штаны, с плотностью колготок, такие я могу купить и здесь и не ждать месяц! Продавца не рекомендую"
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "sentiment",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string",
+        "enum": [
+         "negative",
+         "neutral",
+         "positive"
+        ]
+       }
+      },
+      "required": [
+       "label"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"label\\\": \\\"negative\\\"}\"}}],\"created\":1790629701,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":7,\"prompt_tokens\":514,\"total_tokens\":521,\"prompt_tokens_details\":{\"cached_tokens\":434}},\"id\":\"chatcmpl-vr6fjvmeDa3nIAcOSDv7IhJFrK5IX7gn\",\"timings\":{\"cache_n\":434,\"prompt_n\":80,\"prompt_ms\":356.007,\"prompt_per_token_ms\":4.4500875,\"prompt_per_second\":224.7146825764662,\"predicted_n\":7,\"predicted_ms\":196.717,\"predicted_per_token_ms\":32.78616666666667,\"predicted_per_second\":30.50066847298403}}"
+ }
+}

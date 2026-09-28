@@ -1,0 +1,57 @@
+{
+ "recorded_at": "2026-09-28T21:16:56+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Перед тобой отзыв покупателя об одежде с маркетплейса. Покупатель поставил товару оценку от 1 до 5 звёзд.\nУгадай, сколько звёзд он поставил. Учти: многие ставят 5 звёзд даже при мелких недочётах, а 3 звезды — когда товар «так себе».\nОтветь JSON с полем stars."
+    },
+    {
+     "role": "user",
+     "content": "Отличная куртка, даже теплая для погоды в Москве, красивая и аккуратно сшитая, отправили в тот же день. Но продавец отправил не тот цвет. Кардинально не тот цвет. Я заказывала черный, белая верхняя одежда вообще не по мне и не по нашему климату. Если бы он был внимательнее получил бы все 5 звезд. А так все впечатление испорчено да и что делать мне с ней не знаю"
+    }
+   ],
+   "model": "qwen3:8b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "stars",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "stars": {
+        "type": "integer",
+        "enum": [
+         1,
+         2,
+         3,
+         4,
+         5
+        ]
+       }
+      },
+      "required": [
+       "stars"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json",
+  "body": "{\"id\":\"chatcmpl-986\",\"object\":\"chat.completion\",\"created\":1790630216,\"model\":\"qwen3:8b\",\"system_fingerprint\":\"fp_ollama\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"stars\\\": 2\\n}\"},\"finish_reason\":\"stop\"}],\"usage\":{\"prompt_tokens\":249,\"prompt_tokens_details\":{\"cached_tokens\":115},\"completion_tokens\":10,\"total_tokens\":259}}\n"
+ }
+}

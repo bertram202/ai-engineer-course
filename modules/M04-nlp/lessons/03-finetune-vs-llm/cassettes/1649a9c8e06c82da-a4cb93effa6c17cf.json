@@ -1,0 +1,57 @@
+{
+ "recorded_at": "2026-09-28T21:12:41+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Перед тобой отзыв покупателя об одежде с маркетплейса. Покупатель поставил товару оценку от 1 до 5 звёзд.\nУгадай, сколько звёзд он поставил. Учти: многие ставят 5 звёзд даже при мелких недочётах, а 3 звезды — когда товар «так себе».\nОтветь JSON с полем stars."
+    },
+    {
+     "role": "user",
+     "content": "Качество на троечку, носить юбку нельзя, только для баловства. На худых девочек без попы и талии. Размер S на девочку 155 , по длине терпимо, в талии велика, складки расходятся и топорщатся  в районе бёдер. Пошита криво. До Москвы пришла за две с половиной недели."
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "stars",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "stars": {
+        "type": "integer",
+        "enum": [
+         1,
+         2,
+         3,
+         4,
+         5
+        ]
+       }
+      },
+      "required": [
+       "stars"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"stars\\\": 3\\n}\"}}],\"created\":1790629961,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":11,\"prompt_tokens\":188,\"total_tokens\":199,\"prompt_tokens_details\":{\"cached_tokens\":88}},\"id\":\"chatcmpl-nuEJDOXvBMx0b0n2ZtKfOUTXeQyMmtoL\",\"timings\":{\"cache_n\":88,\"prompt_n\":100,\"prompt_ms\":359.416,\"prompt_per_token_ms\":3.59416,\"prompt_per_second\":278.2291272508736,\"predicted_n\":11,\"predicted_ms\":330.189,\"predicted_per_token_ms\":33.0189,\"predicted_per_second\":30.285684865334698}}"
+ }
+}
