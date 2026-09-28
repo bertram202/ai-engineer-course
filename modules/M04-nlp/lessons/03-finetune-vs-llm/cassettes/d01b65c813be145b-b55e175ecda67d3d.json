@@ -1,0 +1,57 @@
+{
+ "recorded_at": "2026-09-28T21:21:46+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Перед тобой отзыв покупателя об одежде с маркетплейса. Покупатель поставил товару оценку от 1 до 5 звёзд.\nУгадай, сколько звёзд он поставил. Учти: многие ставят 5 звёзд даже при мелких недочётах, а 3 звезды — когда товар «так себе».\nОтветь JSON с полем stars."
+    },
+    {
+     "role": "user",
+     "content": "материал ооооочень искусственный, что-то типа неопрена, в костюме безумно жарко, тело не дышит в помещении, а на улице он не греет. носить его можно только в межсезонье: в помещении еще нет отопления, а на улице уже прохладно. описанию соответствует по размеру и цвету. м - на росс 44. (90-72-92, рост 160)"
+    }
+   ],
+   "model": "qwen3:8b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "stars",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "stars": {
+        "type": "integer",
+        "enum": [
+         1,
+         2,
+         3,
+         4,
+         5
+        ]
+       }
+      },
+      "required": [
+       "stars"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json",
+  "body": "{\"id\":\"chatcmpl-694\",\"object\":\"chat.completion\",\"created\":1790630506,\"model\":\"qwen3:8b\",\"system_fingerprint\":\"fp_ollama\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"stars\\\": 2\\n}\"},\"finish_reason\":\"stop\"}],\"usage\":{\"prompt_tokens\":253,\"prompt_tokens_details\":{\"cached_tokens\":115},\"completion_tokens\":10,\"total_tokens\":263}}\n"
+ }
+}

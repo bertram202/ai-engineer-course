@@ -1,0 +1,57 @@
+{
+ "recorded_at": "2026-09-28T21:12:57+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Перед тобой отзыв покупателя об одежде с маркетплейса. Покупатель поставил товару оценку от 1 до 5 звёзд.\nУгадай, сколько звёзд он поставил. Учти: многие ставят 5 звёзд даже при мелких недочётах, а 3 звезды — когда товар «так себе».\nОтветь JSON с полем stars."
+    },
+    {
+     "role": "user",
+     "content": "Оформила заказ 11.11, жду жду а его не отправляют, пишу продавцу он игнорит , ответил только на второй раз, в ответе никакой конкретики о том , когда отправит товар! В итоге получила товар на кубани через месяц( думаю товар за такую цену можно было и транспортной отправить. Вместе с жилетом положили 2 резинки для волос, как будто я ребёнок ( когда моя подруга заказала шубку и ей долго отправляли товар ей положили меховую шапку, а тут резинка за 5₽, продавец жмот! Что касается самого жилета сшит вполне хорошо, кое где торчат нитки, но это видимо норма для китая . Села жилетка отлично ! А вот чем я сильно разочарована , тем что мех линяет ( не знаю на сколько сезонов его хватит ( ещё не понравились застежки , вечно расстегивается , можно было пришить застегивающиеся , а не просто цепляющуюся. "
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "stars",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "stars": {
+        "type": "integer",
+        "enum": [
+         1,
+         2,
+         3,
+         4,
+         5
+        ]
+       }
+      },
+      "required": [
+       "stars"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"stars\\\": 3\\n}\"}}],\"created\":1790629977,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":11,\"prompt_tokens\":324,\"total_tokens\":335,\"prompt_tokens_details\":{\"cached_tokens\":88}},\"id\":\"chatcmpl-mobrKc1xpQBhtLFR1AKKQh5kEaqu0YxQ\",\"timings\":{\"cache_n\":88,\"prompt_n\":236,\"prompt_ms\":450.442,\"prompt_per_token_ms\":1.9086525423728813,\"prompt_per_second\":523.9298289235907,\"predicted_n\":11,\"predicted_ms\":336.473,\"predicted_per_token_ms\":33.6473,\"predicted_per_second\":29.720066691829654}}"
+ }
+}

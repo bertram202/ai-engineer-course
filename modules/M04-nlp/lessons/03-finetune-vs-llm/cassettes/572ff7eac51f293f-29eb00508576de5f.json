@@ -1,0 +1,55 @@
+{
+ "recorded_at": "2026-09-28T19:56:34+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Ты оцениваешь тональность отзывов покупателей об одежде с маркетплейса.\nКлассы:\n- negative — покупатель недоволен: товар не подошёл, плохое качество, не пришёл, обман;\n- neutral — оценка смешанная или сдержанная: есть и плюсы, и минусы, «нормально», «соответствует цене»;\n- positive — покупатель доволен: хвалит товар, продавца или доставку.\nОтветь JSON с полем label."
+    },
+    {
+     "role": "user",
+     "content": "Конечно, за такую цену ничего хорошего ожидать не приходится, но увидев восторженные отзывы решила заказать... качество - как тюль матовая... не знаю, есть ли там хлопок вообще, нитки пришиты, что называется, на сопли... я разочарована и никому не советую данный продукт((("
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "sentiment",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string",
+        "enum": [
+         "negative",
+         "neutral",
+         "positive"
+        ]
+       }
+      },
+      "required": [
+       "label"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"label\\\": \\\"negative\\\"\\n}\"}}],\"created\":1790625394,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":12,\"prompt_tokens\":194,\"total_tokens\":206,\"prompt_tokens_details\":{\"cached_tokens\":114}},\"id\":\"chatcmpl-K8HCLYcRv7MdWaHPAe72JKwsONkzhs6x\",\"timings\":{\"cache_n\":114,\"prompt_n\":80,\"prompt_ms\":355.065,\"prompt_per_token_ms\":4.4383125,\"prompt_per_second\":225.31085857519045,\"predicted_n\":12,\"predicted_ms\":335.376,\"predicted_per_token_ms\":30.48872727272727,\"predicted_per_second\":32.799007680931254}}"
+ }
+}

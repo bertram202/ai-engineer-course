@@ -1,0 +1,88 @@
+---
+title: "M02. Шпаргалка"
+subtitle: "Классическое ML"
+filters:
+  - ../../../quarto/filters/cheatsheet-tables.lua
+format:
+  html: default
+  pdf:
+    toc: false
+    number-sections: false
+    fontsize: 9pt
+    classoption: [twocolumn]
+    geometry: [top=14mm, bottom=16mm, left=12mm, right=12mm]
+---
+
+# Метрики
+
+* Precision $= \frac{TP}{TP+FP}$ — доля верных среди найденных.
+* Recall $= \frac{TP}{TP+FN}$ — доля найденных среди всех верных.
+* F1 $= \frac{2PR}{P+R}$.
+* Accuracy сравнивайте с долей частого класса.
+* macro — среднее по классам, weighted — с весами, micro — по объектам.
+* Регрессия: MAE, MSE, RMSE, $R^2 = 1 - \frac{\sum(y-\hat y)^2}{\sum(y-\bar y)^2}$.
+
+# Кривые и пороги
+
+* ROC: TPR от FPR $= \frac{FP}{FP+TN}$; AUC — вероятность, что положительный выше отрицательного.
+* PR: precision от recall. При дисбалансе информативнее ROC.
+* Порог выбирают на train или validation по `cross_val_predict`.
+
+# Калибровка
+
+* Кривая: средняя предсказанная вероятность в корзине против доли положительных.
+* Brier $= \frac1n\sum(p_i-y_i)^2$; ECE — взвешенное отклонение корзин.
+* Лечение: `CalibratedClassifierCV(method="sigmoid" | "isotonic")`.
+
+# Валидация
+
+* train — обучение, validation — выбор, test — один раз в конце.
+* `StratifiedKFold` — при дисбалансе, `GroupKFold` — группы, `TimeSeriesSplit` — время.
+* Всё обучаемое (скейлер, отбор, TF-IDF) — внутри `Pipeline`.
+* `cross_validate` — метрики по фолдам, `cross_val_predict` — предсказания вне фолда.
+* `ColumnTransformer` — разная обработка для разных столбцов.
+
+# Утечки
+
+* Предобработка до разбиения.
+* Признак из будущего («слишком хорошо»).
+* Дубликаты и почти-дубликаты train/test.
+* Группы и время.
+* Контаминация бенчмарков в LLM.
+
+# Смещение и разброс
+
+* $\mathbb{E}(y-\hat f)^2 = \text{bias}^2 + \text{variance} + \sigma^2$.
+* Простая модель — смещение, сложная — разброс.
+* Регуляризация, данные, ансамбли, ранняя остановка.
+
+# Линейные модели
+
+* МНК: $w = (X^\top X)^{-1}X^\top y$ → `np.linalg.lstsq`.
+* Логистическая: $p = \sigma(w^\top x + b)$, log-loss.
+* Градиент: $\frac1n X^\top(p - y)$.
+* $e^{w_j}$ — во сколько раз растут шансы.
+* L2 сжимает веса, L1 зануляет. В scikit-learn $C = 1/\lambda$.
+* sklearn ≥ 1.8: `l1_ratio=1` вместо `penalty="l1"`, `C=np.inf` — без регуляризации.
+
+# Деревья и ансамбли
+
+* Дерево: жадные разбиения по Джини, энтропии или дисперсии.
+* Бэггинг и лес: усреднение → меньше разброс.
+* Бустинг: $F_m = F_{m-1} + \eta h_m$, $h_m$ учится на антиградиенте (для MSE — остатки).
+* Ранняя остановка по валидации.
+* CatBoost — категории из коробки; HistGB — быстрый, есть в sklearn.
+
+# SHAP
+
+* $f(x) = \phi_0 + \sum_j \phi_j(x)$.
+* `shap.TreeExplainer(model)(X)`.
+* `beeswarm` — глобально, `waterfall` — один объект.
+* Объясняет модель, а не причины.
+
+# Без учителя
+
+* k-means: минимум $\sum\|x_i - \mu_{c_i}\|^2$, алгоритм Ллойда, `n_init`.
+* Силуэт $s = \frac{b-a}{\max(a,b)}$; ARI — совпадение с метками.
+* PCA = SVD центрированных данных.
+* UMAP и t-SNE — только для картинок.

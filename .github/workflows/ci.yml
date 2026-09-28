@@ -7,11 +7,13 @@ on:
 
 jobs:
   secrets:
-    name: Нет секретов
+    name: Секреты и упражнения
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
       - run: python3 scripts/check_secrets.py
+      - name: Заготовки упражнений совпадают с решениями
+        run: python3 scripts/make_exercises.py --check modules/*
 
   library:
     name: Библиотека mlcourse

@@ -1,0 +1,55 @@
+{
+ "recorded_at": "2026-09-28T21:02:05+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Ты оцениваешь тональность отзывов покупателей об одежде с маркетплейса.\nКлассы:\n- negative — покупатель недоволен: товар не подошёл, плохое качество, не пришёл, обман;\n- neutral — оценка смешанная или сдержанная: есть и плюсы, и минусы, «нормально», «соответствует цене»;\n- positive — покупатель доволен: хвалит товар, продавца или доставку.\nОтветь JSON с полем label."
+    },
+    {
+     "role": "user",
+     "content": "Цена на момент покупки 573 рубля. На параметры 85-63-93 см и рост 157 см я заказала размер S. Упакована юбка была в зип-лок пакет, сверху в почтовый пакет. При вскрытии упаковки посторонних запахов не было. Материал очень мягкий, эластичный и приятен на ощупь. Кокетка ничем не продублирована, но со своей задачей справляется. Вытачки симметричны. Для меня непонятен крой: задняя часть юбки немного больше, чем передняя. Посмотрела в отзывах к товару и вижу, что это не единичный случай. У всех покупателей юбки одинаковые. Конечно, это не бросается в глаза, поэтому, минус для меня не существенный. Чего не скажешь об обработке швов. На фото все видно. Молния потайная, в тон ткани. Замочек ходит хорошо.\n\nДоставка до Московской области 2 недели.\n\nhttps://ru.itao.com/u/913690190#post-10005944633910"
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "sentiment",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string",
+        "enum": [
+         "negative",
+         "neutral",
+         "positive"
+        ]
+       }
+      },
+      "required": [
+       "label"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"label\\\": \\\"neutral\\\"\\n}\"}}],\"created\":1790629325,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":12,\"prompt_tokens\":384,\"total_tokens\":396,\"prompt_tokens_details\":{\"cached_tokens\":114}},\"id\":\"chatcmpl-e7hfIG3SzRxKGWPiwCyr5dOMo3ctQdpD\",\"timings\":{\"cache_n\":114,\"prompt_n\":270,\"prompt_ms\":582.007,\"prompt_per_token_ms\":2.155581481481481,\"prompt_per_second\":463.91194607625,\"predicted_n\":12,\"predicted_ms\":344.815,\"predicted_per_token_ms\":31.346818181818183,\"predicted_per_second\":31.901164392500327}}"
+ }
+}

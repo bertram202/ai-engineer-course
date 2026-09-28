@@ -1,0 +1,57 @@
+{
+ "recorded_at": "2026-09-28T21:17:48+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Перед тобой отзыв покупателя об одежде с маркетплейса. Покупатель поставил товару оценку от 1 до 5 звёзд.\nУгадай, сколько звёзд он поставил. Учти: многие ставят 5 звёзд даже при мелких недочётах, а 3 звезды — когда товар «так себе».\nОтветь JSON с полем stars."
+    },
+    {
+     "role": "user",
+     "content": "Я очень огорчена куртка оказалась совсем не такая как на фото, короткая, силуэт прямой а не приталенный, рукова широченные. Я не понимаю откуда столько хороших отзывов за 4000 тысячи можно было и у нас что то купить. И кстати замша да натуральная но очень тонкая и при носки она деформируется в рукавах на сгибах остаются полоски. И размер мне оказался велик, хоте снимала мерки и советовалась с продавцом "
+    }
+   ],
+   "model": "qwen3:8b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "stars",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "stars": {
+        "type": "integer",
+        "enum": [
+         1,
+         2,
+         3,
+         4,
+         5
+        ]
+       }
+      },
+      "required": [
+       "stars"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json",
+  "body": "{\"id\":\"chatcmpl-488\",\"object\":\"chat.completion\",\"created\":1790630268,\"model\":\"qwen3:8b\",\"system_fingerprint\":\"fp_ollama\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"stars\\\": 2\\n}\"},\"finish_reason\":\"stop\"}],\"usage\":{\"prompt_tokens\":268,\"prompt_tokens_details\":{\"cached_tokens\":115},\"completion_tokens\":10,\"total_tokens\":278}}\n"
+ }
+}

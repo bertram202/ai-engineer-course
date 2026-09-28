@@ -1,0 +1,29 @@
+{
+ "recorded_at": "2026-09-26T11:06:55+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "user",
+     "content": "Name a programming language. Answer with a single word."
+    }
+   ],
+   "model": "qwen3:8b",
+   "logprobs": true,
+   "max_tokens": 1,
+   "temperature": 0,
+   "top_logprobs": 20,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json",
+  "body": "{\"id\":\"chatcmpl-297\",\"object\":\"chat.completion\",\"created\":1790420815,\"model\":\"qwen3:8b\",\"system_fingerprint\":\"fp_ollama\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Python\"},\"finish_reason\":\"length\",\"logprobs\":{\"content\":[{\"token\":\"Python\",\"logprob\":-0.000307965005049482,\"bytes\":[80,121,116,104,111,110],\"top_logprobs\":[{\"token\":\"Python\",\"logprob\":-0.000307965005049482,\"bytes\":[80,121,116,104,111,110]},{\"token\":\"Java\",\"logprob\":-8.648119926452637,\"bytes\":[74,97,118,97]},{\"token\":\"JavaScript\",\"logprob\":-8.929171562194824,\"bytes\":[74,97,118,97,83,99,114,105,112,116]},{\"token\":\"C\",\"logprob\":-17.199708938598633,\"bytes\":[67]},{\"token\":\" Python\",\"logprob\":-21.081289291381836,\"bytes\":[32,80,121,116,104,111,110]},{\"token\":\"Javascript\",\"logprob\":-23.991914749145508,\"bytes\":[74,97,118,97,115,99,114,105,112,116]},{\"token\":\"Ruby\",\"logprob\":-25.079753875732422,\"bytes\":[82,117,98,121]},{\"token\":\"python\",\"logprob\":-26.13829231262207,\"bytes\":[112,121,116,104,111,110]},{\"token\":\"PHP\",\"logprob\":-26.432554244995117,\"bytes\":[80,72,80]},{\"token\":\" Java\",\"logprob\":-27.08127784729004,\"bytes\":[32,74,97,118,97]},{\"token\":\"Perl\",\"logprob\":-27.235403060913086,\"bytes\":[80,101,114,108]},{\"token\":\" JavaScript\",\"logprob\":-27.484783172607422,\"bytes\":[32,74,97,118,97,83,99,114,105,112,116]},{\"token\":\"Py\",\"logprob\":-27.89531135559082,\"bytes\":[80,121]},{\"token\":\"HTML\",\"logprob\":-27.978116989135742,\"bytes\":[72,84,77,76]},{\"token\":\"Swift\",\"logprob\":-28.26402473449707,\"bytes\":[83,119,105,102,116]},{\"token\":\"JAVA\",\"logprob\":-28.578187942504883,\"bytes\":[74,65,86,65]},{\"token\":\"Lua\",\"logprob\":-28.915552139282227,\"bytes\":[76,117,97]},{\"token\":\"Scala\",\"logprob\":-29.615318298339844,\"bytes\":[83,99,97,108,97]},{\"token\":\"P\",\"logprob\":-29.972475051879883,\"bytes\":[80]},{\"token\":\"javascript\",\"logprob\":-30.8624210357666,\"bytes\":[106,97,118,97,115,99,114,105,112,116]}]}]}}],\"usage\":{\"prompt_tokens\":27,\"prompt_tokens_details\":{\"cached_tokens\":4},\"completion_tokens\":1,\"total_tokens\":28}}\n"
+ }
+}

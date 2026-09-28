@@ -1,0 +1,57 @@
+{
+ "recorded_at": "2026-09-28T21:14:24+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Перед тобой отзыв покупателя об одежде с маркетплейса. Покупатель поставил товару оценку от 1 до 5 звёзд.\nУгадай, сколько звёзд он поставил. Учти: многие ставят 5 звёзд даже при мелких недочётах, а 3 звезды — когда товар «так себе».\nОтветь JSON с полем stars."
+    },
+    {
+     "role": "user",
+     "content": "Отличная рубашка. Покупаю уже вторую у данного продавца. Доставка быстрая. Трек отслеживался. Сама рубашка очень теплая, качество хорошее. Никаких торчащих ниток, никакого постороннего запаха. Очень довольна. Думаю заказать такую же еще и дочери."
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "stars",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "stars": {
+        "type": "integer",
+        "enum": [
+         1,
+         2,
+         3,
+         4,
+         5
+        ]
+       }
+      },
+      "required": [
+       "stars"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"stars\\\": 5\\n}\"}}],\"created\":1790630064,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":11,\"prompt_tokens\":163,\"total_tokens\":174,\"prompt_tokens_details\":{\"cached_tokens\":88}},\"id\":\"chatcmpl-nXO9Ja3yTnTO5xdQx3Q2kcGZNBvFWpHT\",\"timings\":{\"cache_n\":88,\"prompt_n\":75,\"prompt_ms\":405.014,\"prompt_per_token_ms\":5.4001866666666665,\"prompt_per_second\":185.1787839432711,\"predicted_n\":11,\"predicted_ms\":689.208,\"predicted_per_token_ms\":68.9208,\"predicted_per_second\":14.509407900082413}}"
+ }
+}

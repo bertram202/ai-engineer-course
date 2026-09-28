@@ -1,0 +1,57 @@
+{
+ "recorded_at": "2026-09-28T21:11:11+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Перед тобой отзыв покупателя об одежде с маркетплейса. Покупатель поставил товару оценку от 1 до 5 звёзд.\nУгадай, сколько звёзд он поставил. Учти: многие ставят 5 звёзд даже при мелких недочётах, а 3 звезды — когда товар «так себе».\nОтветь JSON с полем stars."
+    },
+    {
+     "role": "user",
+     "content": "Я очень огорчена куртка оказалась совсем не такая как на фото, короткая, силуэт прямой а не приталенный, рукова широченные. Я не понимаю откуда столько хороших отзывов за 4000 тысячи можно было и у нас что то купить. И кстати замша да натуральная но очень тонкая и при носки она деформируется в рукавах на сгибах остаются полоски. И размер мне оказался велик, хоте снимала мерки и советовалась с продавцом "
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "stars",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "stars": {
+        "type": "integer",
+        "enum": [
+         1,
+         2,
+         3,
+         4,
+         5
+        ]
+       }
+      },
+      "required": [
+       "stars"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"stars\\\": 2\\n}\"}}],\"created\":1790629869,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":11,\"prompt_tokens\":210,\"total_tokens\":221,\"prompt_tokens_details\":{\"cached_tokens\":88}},\"id\":\"chatcmpl-TZADhDMaxWVuxbvvHKNwTfoaUnqJoXlo\",\"timings\":{\"cache_n\":88,\"prompt_n\":122,\"prompt_ms\":517.685,\"prompt_per_token_ms\":4.243319672131147,\"prompt_per_second\":235.6645450418691,\"predicted_n\":11,\"predicted_ms\":415.242,\"predicted_per_token_ms\":41.5242,\"predicted_per_second\":24.08234234494584}}"
+ }
+}

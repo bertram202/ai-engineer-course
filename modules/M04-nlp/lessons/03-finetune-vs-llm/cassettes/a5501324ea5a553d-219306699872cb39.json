@@ -1,0 +1,55 @@
+{
+ "recorded_at": "2026-09-28T21:02:16+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Ты оцениваешь тональность отзывов покупателей об одежде с маркетплейса.\nКлассы:\n- negative — покупатель недоволен: товар не подошёл, плохое качество, не пришёл, обман;\n- neutral — оценка смешанная или сдержанная: есть и плюсы, и минусы, «нормально», «соответствует цене»;\n- positive — покупатель доволен: хвалит товар, продавца или доставку.\nОтветь JSON с полем label."
+    },
+    {
+     "role": "user",
+     "content": "Футболка чистая синтетика и есть запах. В магазине в живую не купила бы никогда. Размер соответствует."
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "sentiment",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string",
+        "enum": [
+         "negative",
+         "neutral",
+         "positive"
+        ]
+       }
+      },
+      "required": [
+       "label"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"label\\\": \\\"neutral\\\"\\n}\"}}],\"created\":1790629336,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":12,\"prompt_tokens\":154,\"total_tokens\":166,\"prompt_tokens_details\":{\"cached_tokens\":114}},\"id\":\"chatcmpl-6cv9ZdGlRzdzBoMr73wY9x8CLikX2XLh\",\"timings\":{\"cache_n\":114,\"prompt_n\":40,\"prompt_ms\":330.253,\"prompt_per_token_ms\":8.256325,\"prompt_per_second\":121.11926311040324,\"predicted_n\":12,\"predicted_ms\":336.959,\"predicted_per_token_ms\":30.632636363636365,\"predicted_per_second\":32.64492119219252}}"
+ }
+}

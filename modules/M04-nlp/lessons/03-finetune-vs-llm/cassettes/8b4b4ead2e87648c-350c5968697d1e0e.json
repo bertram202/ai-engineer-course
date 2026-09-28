@@ -1,0 +1,103 @@
+{
+ "recorded_at": "2026-09-28T21:08:05+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Ты оцениваешь тональность отзывов покупателей об одежде с маркетплейса.\nКлассы:\n- negative — покупатель недоволен: товар не подошёл, плохое качество, не пришёл, обман;\n- neutral — оценка смешанная или сдержанная: есть и плюсы, и минусы, «нормально», «соответствует цене»;\n- positive — покупатель доволен: хвалит товар, продавца или доставку.\nОтветь JSON с полем label."
+    },
+    {
+     "role": "user",
+     "content": "Привет, друг! Рубашка хорошая, упаковка как в магазине, трэк отслеживался. по размеру подошло. я довольна. Подскажите, на следующую покупку я могу рассчитывать на скидку? Спасибо."
+    },
+    {
+     "role": "assistant",
+     "content": "{\"label\": \"positive\"}"
+    },
+    {
+     "role": "user",
+     "content": "товар не пришел деньги не вернули продавец не общителен"
+    },
+    {
+     "role": "assistant",
+     "content": "{\"label\": \"negative\"}"
+    },
+    {
+     "role": "user",
+     "content": "Не понимаю хвалебных отзывов на данный товар.Юбка на рост158,талия80 ,бедра98,по размерной сетке-узкая,в ней невозможно шагу ступить,сесть,молния ужасная,нитки гнилые,сорвалось на щлице после первой примерки."
+    },
+    {
+     "role": "assistant",
+     "content": "{\"label\": \"neutral\"}"
+    },
+    {
+     "role": "user",
+     "content": "Заказала красную и розовую, розовая оказалась меньше и рукава очень короткие, можно носить только как 3 четверти, за это сняла звёзды."
+    },
+    {
+     "role": "assistant",
+     "content": "{\"label\": \"neutral\"}"
+    },
+    {
+     "role": "user",
+     "content": "Нормальная"
+    },
+    {
+     "role": "assistant",
+     "content": "{\"label\": \"positive\"}"
+    },
+    {
+     "role": "user",
+     "content": "Запах ужасный! Размер не сходиться. Продавец ужасно обещается"
+    },
+    {
+     "role": "assistant",
+     "content": "{\"label\": \"negative\"}"
+    },
+    {
+     "role": "user",
+     "content": "Оформила заказ 11.11, жду жду а его не отправляют, пишу продавцу он игнорит , ответил только на второй раз, в ответе никакой конкретики о том , когда отправит товар! В итоге получила товар на кубани через месяц( думаю товар за такую цену можно было и транспортной отправить. Вместе с жилетом положили 2 резинки для волос, как будто я ребёнок ( когда моя подруга заказала шубку и ей долго отправляли товар ей положили меховую шапку, а тут резинка за 5₽, продавец жмот! Что касается самого жилета сшит вполне хорошо, кое где торчат нитки, но это видимо норма для китая . Села жилетка отлично ! А вот чем я сильно разочарована , тем что мех линяет ( не знаю на сколько сезонов его хватит ( ещё не понравились застежки , вечно расстегивается , можно было пришить застегивающиеся , а не просто цепляющуюся. "
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "sentiment",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string",
+        "enum": [
+         "negative",
+         "neutral",
+         "positive"
+        ]
+       }
+      },
+      "required": [
+       "label"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"label\\\": \\\"negative\\\"}\"}}],\"created\":1790629685,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":7,\"prompt_tokens\":670,\"total_tokens\":677,\"prompt_tokens_details\":{\"cached_tokens\":434}},\"id\":\"chatcmpl-IZuFY2kXrXSffJcjj4NLxGHSjZOTkHWR\",\"timings\":{\"cache_n\":434,\"prompt_n\":236,\"prompt_ms\":446.384,\"prompt_per_token_ms\":1.891457627118644,\"prompt_per_second\":528.6927846876232,\"predicted_n\":7,\"predicted_ms\":195.348,\"predicted_per_token_ms\":32.558,\"predicted_per_second\":30.714417347502916}}"
+ }
+}

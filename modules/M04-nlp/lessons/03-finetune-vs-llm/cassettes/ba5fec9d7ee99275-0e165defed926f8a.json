@@ -1,0 +1,55 @@
+{
+ "recorded_at": "2026-09-28T21:04:28+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Ты оцениваешь тональность отзывов покупателей об одежде с маркетплейса.\nКлассы:\n- negative — покупатель недоволен: товар не подошёл, плохое качество, не пришёл, обман;\n- neutral — оценка смешанная или сдержанная: есть и плюсы, и минусы, «нормально», «соответствует цене»;\n- positive — покупатель доволен: хвалит товар, продавца или доставку.\nОтветь JSON с полем label."
+    },
+    {
+     "role": "user",
+     "content": "очень ждала эти джинсы и не зря! просто восторг, закажу еще черные попозже) на об 92 размер Л отлично, длина на рост 172 тоже хорошо подошла! ткань приятная, не пылесос, цвет очень красивый! в общем то что и хотела"
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "sentiment",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string",
+        "enum": [
+         "negative",
+         "neutral",
+         "positive"
+        ]
+       }
+      },
+      "required": [
+       "label"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"label\\\": \\\"positive\\\"\\n}\"}}],\"created\":1790629468,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":12,\"prompt_tokens\":193,\"total_tokens\":205,\"prompt_tokens_details\":{\"cached_tokens\":114}},\"id\":\"chatcmpl-gbSsdWCSPMAm3FVKBCgn2JqsCf6nDUVl\",\"timings\":{\"cache_n\":114,\"prompt_n\":79,\"prompt_ms\":353.599,\"prompt_per_token_ms\":4.475936708860759,\"prompt_per_second\":223.41692142794523,\"predicted_n\":12,\"predicted_ms\":344.071,\"predicted_per_token_ms\":31.279181818181822,\"predicted_per_second\":31.970145696673068}}"
+ }
+}

@@ -24,3 +24,10 @@
 \setlength{\emergencystretch}{3em}
 \frenchspacing
 \renewcommand{\arraystretch}{1.25}
+
+% В PT Serif нет стрелок: делаем их активными символами и берём из математического шрифта
+% (то же, что пакет newunicodechar, но без зависимостей)
+\catcode`→=\active \protected\def→{\ensuremath{\rightarrow}}
+\catcode`←=\active \protected\def←{\ensuremath{\leftarrow}}
+\catcode`↔=\active \protected\def↔{\ensuremath{\leftrightarrow}}
+\catcode`⇒=\active \protected\def⇒{\ensuremath{\Rightarrow}}

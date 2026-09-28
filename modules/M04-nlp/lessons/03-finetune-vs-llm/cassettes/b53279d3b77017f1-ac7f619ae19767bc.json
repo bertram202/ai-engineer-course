@@ -1,0 +1,57 @@
+{
+ "recorded_at": "2026-09-28T21:12:29+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Перед тобой отзыв покупателя об одежде с маркетплейса. Покупатель поставил товару оценку от 1 до 5 звёзд.\nУгадай, сколько звёзд он поставил. Учти: многие ставят 5 звёзд даже при мелких недочётах, а 3 звезды — когда товар «так себе».\nОтветь JSON с полем stars."
+    },
+    {
+     "role": "user",
+     "content": "маме на размер 50 велико"
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "stars",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "stars": {
+        "type": "integer",
+        "enum": [
+         1,
+         2,
+         3,
+         4,
+         5
+        ]
+       }
+      },
+      "required": [
+       "stars"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"stars\\\": 3\\n}\"}}],\"created\":1790629949,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":11,\"prompt_tokens\":109,\"total_tokens\":120,\"prompt_tokens_details\":{\"cached_tokens\":88}},\"id\":\"chatcmpl-V0lrwxepANSOBmsc5r2IqO6GiClv3Mnz\",\"timings\":{\"cache_n\":88,\"prompt_n\":21,\"prompt_ms\":335.385,\"prompt_per_token_ms\":15.970714285714285,\"prompt_per_second\":62.61460709334049,\"predicted_n\":11,\"predicted_ms\":464.447,\"predicted_per_token_ms\":46.4447,\"predicted_per_second\":21.530982006558336}}"
+ }
+}

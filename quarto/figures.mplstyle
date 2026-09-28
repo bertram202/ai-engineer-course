@@ -1,0 +1,17 @@
+# Стиль рисунков теории (theory/figures/make_figures.py каждого модуля)
+font.family: PT Sans, DejaVu Sans, sans-serif
+font.size: 10
+axes.titlesize: 11
+axes.labelsize: 10
+axes.spines.top: False
+axes.spines.right: False
+axes.grid: True
+grid.alpha: 0.25
+axes.prop_cycle: cycler('color', ['3949AB', 'E53935', '43A047', 'FB8C00', '8E24AA', '00897B', '6D4C41'])
+figure.dpi: 100
+savefig.dpi: 200
+savefig.bbox: tight
+savefig.pad_inches: 0.05
+legend.frameon: False
+lines.linewidth: 1.8
+image.cmap: viridis

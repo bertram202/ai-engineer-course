@@ -1,0 +1,55 @@
+{
+ "recorded_at": "2026-09-28T21:01:36+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Ты оцениваешь тональность отзывов покупателей об одежде с маркетплейса.\nКлассы:\n- negative — покупатель недоволен: товар не подошёл, плохое качество, не пришёл, обман;\n- neutral — оценка смешанная или сдержанная: есть и плюсы, и минусы, «нормально», «соответствует цене»;\n- positive — покупатель доволен: хвалит товар, продавца или доставку.\nОтветь JSON с полем label."
+    },
+    {
+     "role": "user",
+     "content": "Начнем с того,что наткнулась на мошенника,по отзывам с 1 звездой поняла что ситуация со мной похожа на другие.Продавец дал посторонний трек код в другой город на имя парня какого то,я открыла спор,просила вернуть деньги,алиэкспрес одобрил,продавец напротив слезно умолял просил закрыть спор,подождать,нес бред про то что перепутали,про нереальные прлблемы с отправкой и прочее.Не ведитесь и не закрывайте спор иначе не дождетесь ни товара ни денег,стойте на своем,.я так поняла тут все через раз отправляют,расчитывая на дурака,кто то отследит кто то нет,кто откроет спор а кто будет ждать и в итоге останется ни с чем."
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "sentiment",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string",
+        "enum": [
+         "negative",
+         "neutral",
+         "positive"
+        ]
+       }
+      },
+      "required": [
+       "label"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"label\\\": \\\"negative\\\"\\n}\"}}],\"created\":1790629296,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":12,\"prompt_tokens\":310,\"total_tokens\":322,\"prompt_tokens_details\":{\"cached_tokens\":114}},\"id\":\"chatcmpl-yBt5EmEPzgbwIXEbjhxIsuoQYIJaIvvz\",\"timings\":{\"cache_n\":114,\"prompt_n\":196,\"prompt_ms\":525.632,\"prompt_per_token_ms\":2.6817959183673468,\"prompt_per_second\":372.884451479362,\"predicted_n\":12,\"predicted_ms\":358.256,\"predicted_per_token_ms\":32.56872727272727,\"predicted_per_second\":30.704300835156985}}"
+ }
+}

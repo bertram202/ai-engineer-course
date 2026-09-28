@@ -1,0 +1,29 @@
+[project]
+name = "m01-math"
+version = "1.0.0"
+description = "M01. Математика для LLM"
+requires-python = "==3.12.*"
+dependencies = [
+    "mlcourse",
+    "ipykernel>=6.29",
+    "jupyterlab>=4.2",
+    "nbconvert>=7.16",
+    "pytest>=8",
+    "numpy>=2.0",
+    "matplotlib>=3.9",
+    "scikit-learn>=1.6",
+]
+
+[tool.uv]
+package = false
+# Платформы курса: Mac на Apple Silicon (нативно) и Linux (Docker, CI, WSL2 на Windows).
+environments = [
+    "sys_platform == 'darwin' and platform_machine == 'arm64'",
+    "sys_platform == 'linux'",
+]
+
+[tool.uv.sources]
+mlcourse = { path = "../../shared", editable = true }
+
+[tool.pytest.ini_options]
+testpaths = ["exercises/tests"]

@@ -1,0 +1,97 @@
+---
+title: "M04. Шпаргалка"
+subtitle: "NLP и Hugging Face"
+filters:
+  - ../../../quarto/filters/cheatsheet-tables.lua
+format:
+  html: default
+  pdf:
+    toc: false
+    number-sections: false
+    fontsize: 9pt
+    classoption: [twocolumn]
+    geometry: [top=14mm, bottom=16mm, left=12mm, right=12mm]
+---
+
+# TF-IDF
+
+$$\text{tf-idf}(t,d) = \text{tf}(t,d)\cdot\left(\ln\frac{1+N}{1+\text{df}(t)} + 1\right)$$
+
+* `TfidfVectorizer(ngram_range=(1, 2))` — слова и биграммы.
+* `analyzer="char_wb", ngram_range=(2, 5)` — морфология и опечатки.
+* `make_union(...)` — склеить несколько представлений.
+* Baseline: TF-IDF + `LogisticRegression` — секунды обучения.
+
+# Архитектуры
+
+* **Encoder** (BERT): видит всё; классификация, NER, эмбеддинги.
+* **Decoder** (GPT, Qwen): только прошлое; генерация и всё через промпт.
+* **Encoder-decoder** (T5, Whisper): вход → выход.
+
+# Токенизация
+
+* BPE: сливать самую частую пару соседних токенов.
+* Byte-level BPE (GPT-2, Qwen): 256 байтов в основе, нет неизвестных токенов.
+* Русский отзыв: GPT-2 ≈ 7 токенов на слово, Qwen3 ≈ 2,4, rubert-tiny2 ≈ 1,5.
+* `padding=True` + `attention_mask`; `truncation=True, max_length=128`.
+* Токенизатор и модель — всегда пара.
+
+# transformers
+
+```python
+pipeline("text-classification", model=name)
+tok = AutoTokenizer.from_pretrained(name)
+m = AutoModelForSequenceClassification
+    .from_pretrained(name, num_labels=3)
+m = AutoModel.from_pretrained(name)
+out = m(**tok(texts, padding=True,
+             return_tensors="pt"))
+out.last_hidden_state  # [B, T, d]
+```
+
+* Новая голова → предупреждение о случайных весах: нужно дообучать.
+* Метки сверяйте по `config.id2label`, а не по номерам.
+* `revision="…"` — фиксированная версия весов.
+* Чат-шаблон: `tok.apply_chat_template(messages, tokenize=False)`.
+
+# Эмбеддинги текста
+
+* Mean pooling: среднее `last_hidden_state` по маске.
+* CLS: `last_hidden_state[:, 0]`.
+* Затем `F.normalize` и косинус.
+
+# datasets
+
+```python
+ds = load_dataset("json", data_files=…)
+ds = ds.map(lambda b: tok(b["text"],
+            truncation=True), batched=True)
+```
+
+* Arrow, отображение в память, кэш `map`.
+* `disable_progress_bars()` — тихий вывод.
+
+# Trainer
+
+* `TrainingArguments(num_train_epochs, learning_rate, per_device_train_batch_size, warmup_steps=0.1, eval_strategy="epoch", report_to=[])`.
+* `DataCollatorWithPadding(tok)` — паддинг до длины батча.
+* `compute_metrics(eval_pred)` → словарь метрик.
+
+# LLM как классификатор
+
+* JSON-схема с `enum` — ответ строго из меток.
+* `temperature=0`, `extra_body=no_thinking()`.
+* Сначала поймите, что означает метка, потом пишите промпт.
+* Few-shot помогает не всегда — измеряйте.
+
+# Чек-лист модели с Hub
+
+* Лицензия: Apache 2.0, MIT — можно; NC — нельзя в коммерции.
+* Данные обучения: нет ли там вашего теста?
+* Размер весов, язык, ревизия.
+
+# Ловушки
+
+* pandas 3 + pyarrow: `\w` в `str.replace` — только латиница. Пишите `[^0-9a-zа-яё]`.
+* Усечение длинных текстов.
+* Сравнение моделей на разных выборках.

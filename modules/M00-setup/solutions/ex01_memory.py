@@ -12,6 +12,7 @@ def weights_gb(n_params: float, bits_per_weight: float) -> float:
     >>> weights_gb(8e9, 16)
     16.0
     """
+    # подсказка: N · b / 8 байт, переведите в ГБ
     return n_params * bits_per_weight / 8 / GB
 
 
@@ -23,6 +24,7 @@ def kv_cache_gb(
     bytes_per_value: int = 2,
 ) -> float:
     """Размер KV-кэша в гигабайтах: ключи и значения для каждого токена в каждом слое."""
+    # подсказка: 2 · L · H_kv · d_head · s · T байт, переведите в ГБ
     return 2 * n_layers * n_kv_heads * head_dim * bytes_per_value * n_tokens / GB
 
 

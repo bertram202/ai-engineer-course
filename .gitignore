@@ -18,6 +18,7 @@ data/
 *.gguf
 *.safetensors
 mlruns/
+catboost_info/
 
 # Quarto (сайт и PDF собираются в _site/, _freeze/ коммитится)
 /_site/

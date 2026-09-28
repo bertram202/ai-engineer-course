@@ -1,0 +1,97 @@
+---
+title: "M01. Шпаргалка"
+subtitle: "Математика для LLM"
+filters:
+  - ../../../quarto/filters/cheatsheet-tables.lua
+format:
+  html: default
+  pdf:
+    toc: false
+    number-sections: false
+    fontsize: 9pt
+    classoption: [twocolumn]
+    geometry: [top=14mm, bottom=16mm, left=12mm, right=12mm]
+---
+
+# Векторы
+
+$$x \cdot y = \textstyle\sum_i x_i y_i = \|x\|\|y\|\cos\theta$$
+$$\cos(x, y) = \frac{x \cdot y}{\|x\|\,\|y\|}$$
+
+Нормированные векторы: косинус = скалярное произведение, поиск: $s = Eq$.
+
+NumPy:
+
+* `x @ y` — скалярное или матричное произведение;
+* `np.linalg.norm(x)` — длина вектора;
+* `norm(m, axis=1, keepdims=True)` — длины строк;
+* `np.argsort(-s)[:k]` — индексы $k$ наибольших.
+
+# Матрицы
+
+* $(AB)x = A(Bx)$: сначала $B$, потом $A$; $AB \ne BA$.
+* `[B, T, d] @ [d, d_out] → [B, T, d_out]`.
+* $(m \times k)(k \times n)$ стоит $2mnk$ FLOPs.
+* Прямой проход модели — $\approx 2N$ FLOPs/токен, обучение — $\approx 6N$.
+
+# Проекции
+
+$$\operatorname{proj}_u v = \frac{v \cdot u}{u \cdot u}\,u$$
+
+На подпространство с ортонормированным базисом $Q$: $QQ^\top v$.
+
+# SVD и LoRA
+
+$$A = U\Sigma V^\top = \textstyle\sum_i \sigma_i u_i v_i^\top$$
+$$\|A - A_k\|_F = \sqrt{\textstyle\sum_{i>k}\sigma_i^2}$$
+
+LoRA: $W' = W + \frac{\alpha}{r} BA$, параметров $r(d_{\text{in}} + d_{\text{out}})$ вместо $d_{\text{in}} d_{\text{out}}$.
+
+# Градиенты
+
+* $f(x+\Delta) \approx f(x) + \nabla f \cdot \Delta$.
+* Центральная разность, $h \approx 10^{-5}$:
+  $$f'(x) \approx \frac{f(x+h)-f(x-h)}{2h}$$
+* Цепное правило: $J_{f\circ g} = J_f\, J_g$.
+* $y = Wx$: $\frac{\partial L}{\partial W} = g x^\top$, $\frac{\partial L}{\partial x} = W^\top g$.
+
+# Оптимизаторы
+
+* **GD:** $\theta \leftarrow \theta - \eta g$.
+* **Momentum:** $v \leftarrow \beta v + g$, $\theta \leftarrow \theta - \eta v$.
+* **Adam:** $m \leftarrow \beta_1 m + (1-\beta_1) g$, $v \leftarrow \beta_2 v + (1-\beta_2) g^2$,
+  $\hat m = \frac{m}{1-\beta_1^t}$, $\hat v = \frac{v}{1-\beta_2^t}$,
+  $\theta \leftarrow \theta - \eta\,\frac{\hat m}{\sqrt{\hat v}+\varepsilon}$.
+* **AdamW:** дополнительно $\theta \leftarrow \theta - \eta\lambda\theta$ в обход нормировки.
+* По умолчанию $\beta_1 = 0{,}9$, $\beta_2 = 0{,}999$; в LLM $\beta_2 = 0{,}95$.
+* GD на квадратичной функции сходится при $\eta < 2/\lambda_{\max}$.
+* Скорость GD определяет $\kappa = \lambda_{\max}/\lambda_{\min}$.
+* Прогрев, затем косинус:
+  $\eta_t = \eta_{\min} + \tfrac12(\eta_{\max}-\eta_{\min})\bigl(1+\cos\tfrac{\pi t}{T}\bigr)$.
+
+# Softmax и сэмплирование
+
+$$\operatorname{softmax}(z)_i = \frac{e^{z_i - \max z}}{\sum_j e^{z_j - \max z}}$$
+$$\operatorname{LSE}(z) = \max z + \log\textstyle\sum_j e^{z_j - \max z}$$
+
+* Температура: $p \propto e^{z/T}$.
+* $T\to0$ — argmax, $T\to\infty$ — равномерно.
+* top-k — $k$ самых вероятных токенов.
+* top-p — минимальный набор с суммой $\ge p$.
+* min-p — токены с $p_i \ge p_{\min}\,p_{\max}$.
+* `exp` переполняется: float16 — при 12, float32 — при 89.
+
+# Теория информации
+
+| Величина | Формула |
+|---|---|
+| Энтропия | $H(p) = -\sum p_i \log p_i$ |
+| Кросс-энтропия | $H(p,q) = -\sum p_i \log q_i$ |
+| KL | $\mathrm{KL}(p\|q) = H(p,q) - H(p) \ge 0$ |
+| NLL токена | $-\log q_y$ |
+| Перплексия | $\exp\big(-\frac1T\sum_t \log p(x_t\mid x_{<t})\big)$ |
+
+* Равномерное на $n$: $H = \log n$, PPL $= n$.
+* 1 нат $\approx 1{,}44$ бита.
+* Прямая KL накрывает все моды, обратная выбирает одну.
+* LM: $p(x_{1:T}) = \prod_t p(x_t \mid x_{<t})$, обучение = MLE = минимум кросс-энтропии.

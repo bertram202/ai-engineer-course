@@ -1,0 +1,57 @@
+{
+ "recorded_at": "2026-09-28T21:11:21+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Перед тобой отзыв покупателя об одежде с маркетплейса. Покупатель поставил товару оценку от 1 до 5 звёзд.\nУгадай, сколько звёзд он поставил. Учти: многие ставят 5 звёзд даже при мелких недочётах, а 3 звезды — когда товар «так себе».\nОтветь JSON с полем stars."
+    },
+    {
+     "role": "user",
+     "content": "The product did not fit the size. I wanted the goods to sit freely and on my \"s\" ordered the size \"l\", but the size did not go. The size chart is not correct. I refused to return money for a bad product, is this normal? Where it can be worn, horror. It's just in the trash. I demand a refund!"
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "stars",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "stars": {
+        "type": "integer",
+        "enum": [
+         1,
+         2,
+         3,
+         4,
+         5
+        ]
+       }
+      },
+      "required": [
+       "stars"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"stars\\\": 1\\n}\"}}],\"created\":1790629881,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":11,\"prompt_tokens\":175,\"total_tokens\":186,\"prompt_tokens_details\":{\"cached_tokens\":88}},\"id\":\"chatcmpl-sbVf0W2jf5TcTkJzeqwr9LkOSkPvsqqm\",\"timings\":{\"cache_n\":88,\"prompt_n\":87,\"prompt_ms\":365.964,\"prompt_per_token_ms\":4.206482758620689,\"prompt_per_second\":237.72830114437485,\"predicted_n\":11,\"predicted_ms\":634.744,\"predicted_per_token_ms\":63.4744,\"predicted_per_second\":15.754382869314243}}"
+ }
+}

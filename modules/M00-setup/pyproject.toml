@@ -17,6 +17,11 @@ dependencies = [
 
 [tool.uv]
 package = false
+# Платформы курса: Mac на Apple Silicon (нативно) и Linux (Docker, CI, WSL2 на Windows).
+environments = [
+    "sys_platform == 'darwin' and platform_machine == 'arm64'",
+    "sys_platform == 'linux'",
+]
 
 [tool.uv.sources]
 mlcourse = { path = "../../shared", editable = true }

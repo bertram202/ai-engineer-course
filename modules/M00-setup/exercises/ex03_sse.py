@@ -9,6 +9,7 @@
 Теория: раздел «Потоковая выдача (streaming)».
 """
 
+import json
 from collections.abc import Iterable, Iterator
 from typing import Any
 

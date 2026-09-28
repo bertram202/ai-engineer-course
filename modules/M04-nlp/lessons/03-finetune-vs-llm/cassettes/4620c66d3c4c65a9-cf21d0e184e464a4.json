@@ -1,0 +1,55 @@
+{
+ "recorded_at": "2026-09-28T21:03:53+00:00",
+ "request": {
+  "method": "POST",
+  "path": "chat/completions",
+  "body": {
+   "messages": [
+    {
+     "role": "system",
+     "content": "Ты оцениваешь тональность отзывов покупателей об одежде с маркетплейса.\nКлассы:\n- negative — покупатель недоволен: товар не подошёл, плохое качество, не пришёл, обман;\n- neutral — оценка смешанная или сдержанная: есть и плюсы, и минусы, «нормально», «соответствует цене»;\n- positive — покупатель доволен: хвалит товар, продавца или доставку.\nОтветь JSON с полем label."
+    },
+    {
+     "role": "user",
+     "content": "Приятный мягкий хлопок. На рост 171-не короткая, рукава 3/4...Но на худеньких."
+    }
+   ],
+   "model": "qwen3.8-27b",
+   "max_tokens": 20,
+   "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+     "name": "sentiment",
+     "strict": true,
+     "schema": {
+      "type": "object",
+      "properties": {
+       "label": {
+        "type": "string",
+        "enum": [
+         "negative",
+         "neutral",
+         "positive"
+        ]
+       }
+      },
+      "required": [
+       "label"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "temperature": 0,
+   "reasoning_effort": "none",
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  }
+ },
+ "response": {
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "body": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n\\\"label\\\": \\\"neutral\\\"\\n}\"}}],\"created\":1790629433,\"model\":\"qwen3.8-27b\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":11,\"prompt_tokens\":157,\"total_tokens\":168,\"prompt_tokens_details\":{\"cached_tokens\":114}},\"id\":\"chatcmpl-uTqNoaXM65rjfuoM6DrIqHfKKKaw3I7N\",\"timings\":{\"cache_n\":114,\"prompt_n\":43,\"prompt_ms\":336.455,\"prompt_per_token_ms\":7.82453488372093,\"prompt_per_second\":127.8031237461176,\"predicted_n\":11,\"predicted_ms\":314.069,\"predicted_per_token_ms\":31.4069,\"predicted_per_second\":31.840137039949816}}"
+ }
+}
