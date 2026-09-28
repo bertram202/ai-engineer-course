@@ -1,0 +1,87 @@
+---
+title: "M03. Шпаргалка"
+subtitle: "Нейросети, PyTorch и CV"
+filters:
+  - ../../../quarto/filters/cheatsheet-tables.lua
+format:
+  html: default
+  pdf:
+    toc: false
+    number-sections: false
+    fontsize: 9pt
+    classoption: [twocolumn]
+    geometry: [top=14mm, bottom=16mm, left=12mm, right=12mm]
+---
+
+# Цикл обучения
+
+```python
+model.train()
+for x, y in loader:
+    x, y = x.to(device), y.to(device)
+    optimizer.zero_grad()
+    loss = F.cross_entropy(model(x), y)
+    loss.backward()
+    optimizer.step()
+
+model.eval()
+with torch.no_grad():
+    pred = model(x).argmax(dim=1)
+```
+
+* `cross_entropy` принимает **логиты**, не softmax.
+* Сохранение: `torch.save(model.state_dict(), p)`, загрузка: `load_state_dict(torch.load(p, weights_only=True))`.
+
+# Тензоры и устройства
+
+* `mlcourse.get_device()` → `mps`, `cuda` или `cpu`.
+* `x.to(device)`, `x.float()`, `x.cpu().numpy()`.
+* На MPS нет float64; `PYTORCH_ENABLE_MPS_FALLBACK=1`.
+* Маленькие модели бывают быстрее на CPU — меряйте.
+* Формы: картинки `[B, C, H, W]`, тексты `[B, T, d]`.
+
+# Слои
+
+* `nn.Linear(d_in, d_out)` — $d_{in} d_{out} + d_{out}$ параметров.
+* `nn.Conv2d(c_in, c_out, k)` — $c_{out}(c_{in}k^2 + 1)$.
+* Выход свёртки: $\lfloor (n + 2p - k)/s \rfloor + 1$.
+* `nn.Embedding(V, d)` — таблица $V \times d$, градиент только в использованные строки.
+* `nn.EmbeddingBag(V, d, mode="mean")` — среднее эмбеддингов текста.
+
+# Активации
+
+* ReLU $\max(0,x)$, GELU $x\Phi(x)$, SiLU $x\sigma(x)$ — для скрытых слоёв.
+* Сигмоида и tanh затухают на краях.
+
+# Инициализация и нормализация
+
+* Xavier: $\operatorname{Var}(w) = 1/n_{in}$; Kaiming (ReLU): $2/n_{in}$.
+* BatchNorm — по батчу; LayerNorm — по признакам; RMSNorm — без центрирования (LLM).
+* Residual: $y = x + F(x)$.
+* Dropout: в `train()` включён, в `eval()` выключен.
+
+# Точность
+
+* float32 — по умолчанию.
+* bfloat16 — обучение LLM (диапазон как у float32).
+* float16 — узкий диапазон, при обучении нужен loss scaling.
+
+# Transfer learning
+
+* Linear probe: заморозить, признаки → логрегрессия.
+* Fine-tuning: новая голова (LR $\sim 10^{-3}$) + тело (LR $\sim 10^{-4}$), косинусное затухание.
+* Порядок: zero-shot → few-shot → probe → fine-tuning.
+
+# CLIP и InfoNCE
+
+* Zero-shot: класс с самым близким текстом «a photo of …»; ансамбль шаблонов помогает.
+* InfoNCE: `F.cross_entropy(A @ B.T / tau, torch.arange(B))`.
+* $\tau \approx 0{,}01$–$0{,}1$; больше батч — больше отрицательных примеров.
+
+# Подводные камни
+
+* Нет `zero_grad()` — градиенты копятся.
+* Нет `eval()` — работает dropout.
+* Softmax перед `cross_entropy`.
+* Тензоры на разных устройствах.
+* Замер скорости без прогрева.

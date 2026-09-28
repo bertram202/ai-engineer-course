@@ -11,6 +11,14 @@ mode="${2:-}"
 status=0
 for nb in "$module"/lessons/*/lesson.ipynb; do
   dir="$(dirname "$nb")"
+  # Тяжёлые уроки (гигабайты весов, долгое обучение) помечены в метаданных ноутбука
+  # `mlcourse: {ci: skip}`: в CI (CI=true) они пропускаются, локально `make check` выполняет всё.
+  if [[ "${CI:-}" == "true" ]] && python3 -c 'import json, sys
+meta = json.load(open(sys.argv[1]))["metadata"].get("mlcourse", {})
+sys.exit(0 if meta.get("ci") == "skip" else 1)' "$nb"; then
+    echo "⏭ ${dir#"$root"/}: тяжёлый урок, в CI пропущен"
+    continue
+  fi
   echo "▶ ${dir#"$root"/}"
   if [[ "$mode" == "--inplace" ]]; then
     args=(--inplace)

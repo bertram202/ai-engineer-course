@@ -53,6 +53,14 @@ website:
           - modules/M02-classic-ml/lessons/02-linear-models/lesson.ipynb
           - modules/M02-classic-ml/lessons/03-boosting/lesson.ipynb
           - modules/M02-classic-ml/lessons/04-unsupervised/lesson.ipynb
+      - section: "M03 · Нейросети, PyTorch и CV"
+        contents:
+          - modules/M03-deep-learning/theory/theory.qmd
+          - modules/M03-deep-learning/theory/cheatsheet.qmd
+          - modules/M03-deep-learning/lessons/01-micrograd/lesson.ipynb
+          - modules/M03-deep-learning/lessons/02-pytorch/lesson.ipynb
+          - modules/M03-deep-learning/lessons/03-vision/lesson.ipynb
+          - modules/M03-deep-learning/lessons/04-embeddings/lesson.ipynb
   page-footer:
     left: "AI-инженер: от устройства LLM до мультиагентных систем"
     right: "Тексты — CC BY-NC-SA 4.0 · Код — MIT"
